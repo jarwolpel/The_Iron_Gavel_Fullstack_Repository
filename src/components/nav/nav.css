@@ -1,0 +1,31 @@
+/* This will be specific styling for the nav bar */
+nav {
+    display: flex;
+    
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+
+    border-bottom-style: solid;
+    border-bottom-color: #E40712;
+    border-bottom-width: 0.5rem;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    padding: 1rem 2rem;
+}
+
+.nav-left {
+    /* background-color: rgb(71, 69, 69); */
+    padding-left: 1rem;
+}
+
+.nav-right {
+    /* background-color: rgb(164, 175, 172); */
+    padding-right: 1rem;
+}
