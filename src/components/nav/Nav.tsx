@@ -3,15 +3,21 @@ import "./nav.css"
 function Nav() {
     return(
         <nav>
-            <div className="nav-left cinzel-decorative-bold">
-                <h1>Battle Simulator</h1>
-            </div>
-            <div className="nav-right roboto-heading">
-                <a href="#">Home</a>
-                <a href="#">Battles</a>
-                <a href="#">Characters</a>
-                <button>Login</button>
-            </div>
+            <ul className="sidebar">
+                <li><a className="cinzel-decorative-bold"><h1>Battle Simulator</h1></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Battles</a></li>
+                <li><a href="#">Characters</a></li>
+                <li><a href="#"><button>Login</button></a></li>
+            </ul>
+            <ul>
+                <li><a className="cinzel-decorative-bold"><h1>Battle Simulator</h1></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Battles</a></li>
+                <li><a href="#">Characters</a></li>
+                <li><a href="#"><button>Login</button></a></li>
+                <li><a href="#"><img src="./src/assets/menu.svg" alt="hamburger menu"></img></a></li>
+            </ul>
         </nav>
     );
 }

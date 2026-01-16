@@ -1,31 +1,134 @@
 /* This will be specific styling for the nav bar */
 nav {
     display: flex;
-    
     width: 100%;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    
     background-color: #000000;
-
     border-bottom-style: solid;
     border-bottom-color: #E40712;
     border-bottom-width: 0.5rem;
 }
 
-nav a {
-    color: #ffffff;
+nav ul {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav li {
+    height: 50px;
+}
+
+nav a, h1 {
+    height: 100%;
+    padding: 0.25rem 1rem;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
     border-bottom: 1px solid transparent;
     transition: all 0.3s ease;
-    padding: 1rem 2rem;
 }
 
-.nav-left {
-    /* background-color: rgb(71, 69, 69); */
-    padding-left: 1rem;
+nav a:hover {
+    background-color: #0e0e0e;
 }
 
-.nav-right {
-    /* background-color: rgb(164, 175, 172); */
-    padding-right: 1rem;
+nav li:first-child {
+    margin-right: auto;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar li, a {
+    width: 100%;
+}
+
+.hamburger-button {
+    width: 3rem;
+}
+
+/* Media Queries For Mobile View */
+@media screen and (max-width: 940px) {
+
+    .nav-right {
+        /* display:none; */
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem; 
+        background-color: #333333;
+        border-bottom-style: solid;
+        border-bottom-color: #E40712;
+        border-bottom-width: 0.5rem;
+    }
+    
+    /* Optional: Show nav bar when it has this class */
+    #nav-bar.active {
+        display: flex;
+    }
+
+    #hamburger-button {
+        display: inline-block;
+    }   
+    
+    body {
+        font-size: 0.8rem;
+    }
+
+    input {
+        margin: 1em 0.5em;
+    }
+
+    .button-class {
+        padding: 0.5rem 0.65rem;
+        margin: 0.25rem 0.125rem;
+    }
+
+    #score-table th,
+    #score-table td {
+	padding: 0.5rem;
+    }
 }
