@@ -1,11 +1,26 @@
 .EventsLog {
     padding: 1em 0;
     width: 75%;
-    margin: 0 auto;
+    margin: 2em auto;
     align-items: center;
+    border-color: #ceb07a;
+    border-width: 2px;
+    border-style: solid;
 }
 textarea {
     text-align: center;
     overflow: auto;
     resize: none;
+    border:none;
+    font-size: 1.2em;
+}
+
+.DefaultBackground {
+    background-color: #120f0a;
+}
+
+/* This MIGHT be used for damage effects at a later date, but for now
+ its a place holder. */
+.DamagedBackground {
+    background-color: red;
 }
