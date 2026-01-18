@@ -1,6 +1,11 @@
 .EventsLog {
-    padding:10em;
-    width: 100%;
-    justify-content: center;
-    display: flex;
+    padding: 1em 0;
+    width: 75%;
+    margin: 0 auto;
+    align-items: center;
+}
+textarea {
+    text-align: center;
+    overflow: auto;
+    resize: none;
 }
