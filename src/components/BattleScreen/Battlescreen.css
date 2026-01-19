@@ -1,0 +1,37 @@
+.battle-simulator {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.battle-panel {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.character-panel {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.char-frame {
+  background-color: #2c2c2c;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 40%;
+  text-align: center;
+}
+
+.char-frame h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.char-frame .stats {
+  font-size: 18px;
+}
+
+
+
