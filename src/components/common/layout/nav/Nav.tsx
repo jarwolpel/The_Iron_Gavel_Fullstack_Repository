@@ -1,6 +1,6 @@
 import "./nav.css"
 
-function Nav() {
+export function Nav() {
     return(
         <nav>
             <ul className="sidebar">
@@ -34,5 +34,3 @@ function Nav() {
         </nav>
     );
 }
-
-export default Nav;
