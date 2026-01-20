@@ -1,5 +1,7 @@
 import React from 'react';
 import './Battlescreen.css';
+import { characters } from '../../../data/characterList';
+import EventsLog from './BattleScreenEventsLog/EventsLog';
 
 interface CharacterCardStats {
     name: string;
@@ -7,6 +9,29 @@ interface CharacterCardStats {
     damage: number;
     armor: number;
 }
+
+
+export function BattleScreen( ){
+    return (
+        <>
+            <div className="battle-panel">
+                <div className="character-panel">
+                    {characters.map((character, index) => (
+                        <CharacterCard
+                            key={index}
+                            name={character.name}
+                            health={character.health}
+                            damage={character.damage}
+                            armor={character.armor}
+                            />
+                        ))}
+                </div>
+            </div>    
+            <EventsLog/>   
+        </>    
+    )
+}
+
 
 const CharacterCard: React.FC<CharacterCardStats> = ({ name, health, damage, armor }) => {
     return (
@@ -21,4 +46,4 @@ const CharacterCard: React.FC<CharacterCardStats> = ({ name, health, damage, arm
     );
 };
 
-export default CharacterCard;
+export default BattleScreen;
