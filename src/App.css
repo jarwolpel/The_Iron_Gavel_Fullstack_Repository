@@ -7,6 +7,13 @@
   overflow-x: hidden;
 }
 
+main {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 p {
   font-size: 1rem;
 }
@@ -25,6 +32,33 @@ p {
 }
 
 /* Specific Styling */
+.StartMenu {
+  display: flex;
+  align-items: center;
+  background-color: #120E0A;
+  border-style: solid;
+  border-color: #CEB07A;
+  border-radius: 2rem;
+  width: 50%;
+  height: 15vh;
+  margin-top: 2rem;
+}
+
+.MainButtons {
+  /* background-color: orange; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MainButtons button {
+  width: 40%;
+  height: 40%;
+  margin: 2rem 2rem;
+}
+
 .card {
   padding: 2em;
 }
@@ -32,6 +66,7 @@ p {
 .read-the-docs {
   color: #888;
 }
+
 
 /* Fonts */
 .cinzel-decorative-regular {
