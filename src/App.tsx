@@ -3,15 +3,21 @@ import './App.css'
 
 import { Layout } from './components/common/layout/layout';
 import MainMenu from "./components/pages/MainMenu";
+import BattleScreen from "./components/common/BattleScreen/BattleScreen";
 
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-          {/* Render the different pages that are inside the layout component */}
+          {/* Render Main Menu Page */}
           <Route index element={
             <MainMenu></MainMenu>
+          }
+          />
+          {/* Render */}
+          <Route index element={
+            <BattleScreen></BattleScreen>
           }
           />
       </Route>
