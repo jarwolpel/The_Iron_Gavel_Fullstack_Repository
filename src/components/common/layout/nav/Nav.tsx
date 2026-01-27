@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./nav.css"
 
 export function Nav() {
@@ -16,13 +17,17 @@ export function Nav() {
                 </div>
                 <div className="links">
                     <div className="item">
-                        <a href="#">Home</a>
+                        <NavLink to="/" end>
+                            Home
+                        </NavLink>    
                     </div>
                     <div className="item">
+                        <NavLink to="/characters"></NavLink>
                         <a href="#">Characters</a>
                     </div>
                     <div className="item">
-                        <a href="#"><button>Login</button></a>
+                        <NavLink to="/accounts/login"><button>Login</button></NavLink>
+    
                     </div>
                     <div className="item">
                         <a href="#"><img src="./src/assets/menu.svg" alt="hamburger menu"></img></a>
