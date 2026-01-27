@@ -1,6 +1,6 @@
 import React from 'react';
 import './Battlescreen.css';
-import { characters } from '../../../data/characterList';
+import { characters } from '../../../../data/characterList';
 import EventsLog from './BattleScreenEventsLog/EventsLog';
 
 interface CharacterCardStats {

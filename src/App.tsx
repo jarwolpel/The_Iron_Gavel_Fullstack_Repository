@@ -13,13 +13,17 @@ function App() {
           {/* Render Main Menu Page */}
           <Route index element={
             <MainMenu></MainMenu>
-          }
+            }
           />
-          {/* Render */}
-          <Route index element={
-            <BattleScreen></BattleScreen>
-          }
-          />
+          {/* Render Battle screen */}
+          <Route path="/battle-screen">
+            <Route element={
+              <BattleScreen></BattleScreen>
+            }
+            />
+          </Route>
+           
+          
       </Route>
     </Routes>
   )
