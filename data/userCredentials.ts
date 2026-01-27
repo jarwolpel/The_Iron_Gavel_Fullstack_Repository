@@ -1,13 +1,16 @@
-export type Credentials = {
-    userName: string,
-    password: string,
-    email: string
-}
+import type { Credentials } from "../src/types/userCredentials"
 
 export const userCredentials: Credentials[] = [
     {
-        "userName":"JohnnyAppleseed",
+        "username":"JohnnyAppleseed",
         "password":"1234ABCD",
-        "email":"johnnyappleseed@email.com"
+    },
+    {
+        "username":"frank",
+        "password":"frankspassword",
+    },
+    {
+        "username":"jared",
+        "password":"password",
     }
 ]
