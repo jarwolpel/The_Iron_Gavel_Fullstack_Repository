@@ -18,6 +18,13 @@ p {
   font-size: 1rem;
 }
 
+.default-container-scheme {
+  border-color: #ceb07a;
+  border-width: 2px;
+  border-style: solid;
+  background-color: #120f0a;  
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
