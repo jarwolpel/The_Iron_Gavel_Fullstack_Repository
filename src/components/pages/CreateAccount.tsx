@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { CreateAccountButton } from "../common/createAccount/createAccountButton";
-import type { UserData } from "../../types/userDataType";
 import { CreateAccountForm } from "../common/createAccount/createAccountForm";
+import type { Credentials } from "../../types/userCredentials";
 
 export function CreateAccount() {
-    const [newAccount, createNewAccount] = useState<UserData>(
+    const [newAccount, createNewAccount] = useState<Credentials>(
         {
             username: "",
             id: 0,
-            email: ""
+            email: "",
+            password: ""
         }
     );
     return (
@@ -18,7 +19,9 @@ export function CreateAccount() {
                     newAccount={newAccount}
                     createNewAccount={createNewAccount}
                 />
-                <CreateAccountButton/>
+                <CreateAccountButton
+                    newAccount={newAccount}
+                />
             </div>
         </>
     );
