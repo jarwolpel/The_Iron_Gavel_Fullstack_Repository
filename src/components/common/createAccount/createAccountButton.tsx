@@ -10,42 +10,26 @@ export function CreateAccountButton(
         //createNewAccount: React.Dispatch<React.SetStateAction<Credentials>>
     }
 ) {
-    const [emailError, setEmailError] = useState<String>("");
-    const [passwordError, setPasswordError] = useState<String>("");
-    const [usernameError, setUsernameError] = useState<String>("");
+    const [errorMessage, setErrorMessage] = useState<String>("");
     return (
         <>
+            <div>
+                <p>{errorMessage}</p>
+            </div>
             <button
             onClick={() => {
                 if(newAccount.email == "" || newAccount.email == null) {
-                    setEmailError("Email Cannot be empty");
-                }
-                if(newAccount.password == "" || newAccount.password == null) {
-                    setPasswordError("You must enter a password");
-                }
-                if(newAccount.username == "" || newAccount.username == null) {
-                    setUsernameError("You must enter a Username");
+                    setErrorMessage("Email Cannot be empty");
+                } else if(newAccount.password == "" || newAccount.password == null) {
+                    setErrorMessage("You must enter a password");
+                } else if(newAccount.username == "" || newAccount.username == null) {
+                    setErrorMessage("You must enter a Username");
+                } else {
+                    
                 }
             }}>
                 Create Account
             </button>
-            <div>
-                <div>
-                    <p>
-                        {emailError}
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        {passwordError}
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        {usernameError}
-                    </p>
-                </div>
-            </div>
         </>
     );
 }
