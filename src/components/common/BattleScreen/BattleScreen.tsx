@@ -1,6 +1,6 @@
 import React from 'react';
 import './Battlescreen.css';
-import { characters } from "../../../../data/characterList";
+import { characters } from '../../../../data/characterList';
 import EventsLog from './BattleScreenEventsLog/EventsLog';
 
 interface CharacterCardStats {
@@ -14,20 +14,20 @@ interface CharacterCardStats {
 export function BattleScreen( ){
     return (
         <>
-            <div className="battle-panel">
-                <div className="character-panel">
-                    {characters.map((character, index) => (
-                        <CharacterCard
-                            key={index}
-                            name={character.name}
-                            health={character.health}
-                            damage={character.damage}
-                            armor={character.armor}
-                            />
-                        ))}
-                </div>
-            </div>    
-            <EventsLog/>   
+            <div className='char-container'>
+                    <div className="character-panel">
+                        {characters.map((character, index) => (
+                            <CharacterCard
+                                key={index}
+                                name={character.name}
+                                health={character.health}
+                                damage={character.damage}
+                                armor={character.armor}
+                                />
+                            ))}
+                    </div>   
+                <EventsLog/>   
+            </div>
         </>    
     )
 }
@@ -35,7 +35,7 @@ export function BattleScreen( ){
 
 const CharacterCard: React.FC<CharacterCardStats> = ({ name, health, damage, armor }) => {
     return (
-        <div className="char-frame">
+        <div className="char-frame default-container-scheme">
             <h2>{name}</h2>
                 <div className="stats">
                 <p>Health: {health}</p>

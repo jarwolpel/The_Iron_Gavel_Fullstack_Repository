@@ -4,8 +4,11 @@ import { Nav } from "./nav/Nav";
 export function Layout() {
     return (
         <>
-        <Nav/>
-        <Outlet/>
+            <Nav/>
+                <main>
+                    <Outlet/>
+                </main>
+            {/* <Footer /  */}
         </>
     )
 }
