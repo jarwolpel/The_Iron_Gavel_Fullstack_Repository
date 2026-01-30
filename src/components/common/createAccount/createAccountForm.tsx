@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Credentials } from "../../../types/userCredentials";
+import "./createAccount.css";
 
 
 export function CreateAccountForm(

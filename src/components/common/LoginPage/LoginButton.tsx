@@ -24,7 +24,7 @@ export function LoginButton(
                     } else {
                         userDatabase.forEach(e => {
                             if(e.username == attempt.username && e.password == attempt.password) {
-                                setInfoText("Logged In!");
+                                navigator("/");
                             } else {
                                 setInfoText("Unknown Credentials.");
                             }
@@ -32,15 +32,15 @@ export function LoginButton(
                     }
                 }}>Log In</button>
             </div>
+            <div>
+                <p>{infoText}</p>
+            </div>
             <button className="create-account-button"
             onClick={() => {
                 navigator("/accounts/createAccount");
             }}>
                 Create Account
             </button>
-            <div>
-                <p>{infoText}</p>
-            </div>
         </>
     );
 }

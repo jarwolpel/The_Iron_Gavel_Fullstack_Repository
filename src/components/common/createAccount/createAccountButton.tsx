@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Credentials } from "../../../types/userCredentials";
 import { useNavigate } from "react-router-dom";
+import "./createAccount.css";
 
 export function CreateAccountButton(
     {
