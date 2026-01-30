@@ -13,7 +13,7 @@ export function LoginButton(
     }
 ) {
     const [infoText, setInfoText] = useState<String>("");
-    const gromit = useNavigate();
+    const navigator = useNavigate();
     return (
         <>
             <div>
@@ -34,7 +34,7 @@ export function LoginButton(
             </div>
             <button className="create-account-button"
             onClick={() => {
-                gromit("/createAccount");
+                navigator("/accounts/createAccount");
             }}>
                 Create Account
             </button>

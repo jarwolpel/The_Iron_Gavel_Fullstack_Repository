@@ -66,19 +66,16 @@ function App() {
           </Route>
 
           {/* Render Login Page & Create Account */}
-          <Route path="/accounts">
-            <Route 
-            path="/login"
+          <Route path="/accounts/login"
             element={<LoginPage
             userDatabase={userDatabase}/>}
-            />
-            <Route path="/createAccount"
+          />
+          <Route path="/accounts/createAccount"
             element={<CreateAccount
                         userDatabase={userDatabase}
                         updateUserDatabase={updateUserDatabase}
                     />}
-            />
-          </Route> 
+          />
       </Route>
     </Routes>
   );

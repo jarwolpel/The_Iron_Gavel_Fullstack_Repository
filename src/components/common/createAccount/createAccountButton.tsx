@@ -36,7 +36,7 @@ export function CreateAccountButton(
 
                     createNewAccount({...newAccount, id: Date.now()});
                     updateUserDatabase([...userDatabase, newAccount])
-                    navigator("/login");
+                    navigator("/accounts/login");
                 }
             }}>
                 Create Account
