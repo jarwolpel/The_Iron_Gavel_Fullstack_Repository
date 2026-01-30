@@ -41,19 +41,6 @@ a h1 {
 
 }
 
-nav li {
-    /* height: auto; */
-    
-}
-
-nav h1 {
-    /* height: 100%; */
-    /* text-decoration: none; */
-    /* text-align: center; */
-    /* padding: 2rem 1rem; */
-    /* margin: 0 0; */
-}
-
 nav a {
     /* height: 100%; */
     /* margin: 0 2em; */
@@ -64,10 +51,6 @@ nav a {
     color: #ffffff;
     border-bottom: 1px solid transparent;
     transition: all 0.3s ease;
-}
-
-nav a:hover {
-    background-color: #2e2c2c;
 }
 
 nav li:first-child {
