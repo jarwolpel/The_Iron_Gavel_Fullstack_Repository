@@ -18,12 +18,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-          <Route element={
+          <Route  path= "/login" element={
             <LoginPage
             userDatabase={userDatabase}
             />
           }/>
-          <Route index element={
+          <Route path="/createAccount" element={
             <CreateAccount
             userDatabase={userDatabase}
             updateUserDatabase={updateUserDatabase}

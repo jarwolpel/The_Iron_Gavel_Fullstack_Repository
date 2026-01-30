@@ -5,13 +5,14 @@
 }
 
 .login-button {
-    border-color: #ceb07a;
-    border-width: 2px;
-    border-style: double;
-    background-color: #120f0a;  
     font-size: 1.5em;
 }
 
 .login-button a:hover{
     background-color: red;
+}
+
+.create-account-button {
+    margin: 2em 0 0 0;
+    padding: 0 1em;
 }
