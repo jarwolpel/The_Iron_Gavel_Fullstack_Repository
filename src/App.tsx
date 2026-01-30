@@ -4,6 +4,7 @@ import './App.css'
 import { Layout } from './components/common/layout/layout';
 import MainMenu from "./components/pages/MainMenu";
 import BattleScreen from "./components/common/BattleScreen/BattleScreen";
+import CreateBattle from "./components/pages/CreateBattle";
 import { LoginPage } from "./components/pages/LoginPage";
 
 
@@ -16,9 +17,22 @@ function App() {
           <Route index element={<MainMenu />}
           />
 
+          {/* Render Create Battle screen */}
+          <Route 
+            path="/create-battle"
+            element={<CreateBattle />}
+            >
+            <Route 
+              path="characterselect"
+              element={"<CharacterSelect />"}
+            />
+          </Route>
+
           {/* Render Battle screen */}
-          <Route path="/battle-screen">
-            <Route element={<BattleScreen />}
+          <Route path="/battles">
+            <Route 
+            path="battle-screen"
+            element={<BattleScreen />}
             />
           </Route>
 

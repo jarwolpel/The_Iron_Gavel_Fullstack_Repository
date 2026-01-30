@@ -17,13 +17,13 @@ export function Nav() {
                 </div>
                 <div className="links">
                     <div className="item">
-                        <NavLink to="/" end>
-                            Home
-                        </NavLink>    
+                        <NavLink to="/" end>Home</NavLink>    
                     </div>
                     <div className="item">
-                        <NavLink to="/characters"></NavLink>
-                        <a href="#">Characters</a>
+                        <NavLink to="/create-battle/characterselect">Character Select</NavLink>
+                    </div>
+                    <div className="item">
+                        <NavLink to="/battles/battle-screen">Battle Screen</NavLink>
                     </div>
                     <div className="item">
                         <NavLink to="/accounts/login"><button>Login</button></NavLink>
