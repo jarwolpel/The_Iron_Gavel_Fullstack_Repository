@@ -1,7 +1,14 @@
 import { NavLink } from "react-router-dom";
 import "./nav.css"
+import type { Credentials } from "../../../../types/userCredentials";
 
-export function Nav() {
+export function Nav(
+    {
+        loggedInUser
+    }:{
+        loggedInUser: Credentials
+    }
+) {
     return(
         <nav>
             <ul className="sidebar">
@@ -26,7 +33,7 @@ export function Nav() {
                         <NavLink to="/battles/battle-screen">Battle Screen</NavLink>
                     </div>
                     <div className="item">
-                        <NavLink to="/accounts/login"><button>Login</button></NavLink>
+                        <NavLink to="/accounts/login"><button>{loggedInUser.username}</button></NavLink>
     
                     </div>
                     <div className="item">

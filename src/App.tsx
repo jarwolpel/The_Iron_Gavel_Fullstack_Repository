@@ -1,17 +1,27 @@
 import { Routes, Route} from "react-router-dom";
 import './App.css'
-import { useState } from "react"
+import { useState } from "react";
 import { Layout } from './components/common/layout/layout';
 import MainMenu from "./components/pages/MainMenu";
 import BattleScreen from "./components/common/BattleScreen/BattleScreen";
 import CreateBattle from "./components/pages/CreateBattle";
 import LoadBattle from "./components/pages/LoadBattle";
 import { LoginPage } from "./components/pages/LoginPage";
+import { CreateAccount } from "./components/pages/CreateAccount";
+import type { Credentials } from "./types/userCredentials";
+import { userCredentials } from "../data/userCredentials";
 import { initialBattles } from "../data/battleList";
 import type { Battle } from "../data/battleList";
 
 
 function App() {
+
+  const [loggedInUser, setLoggedInUser] = useState<Credentials>(
+    {username:"Login"} // Funny work around go weeeeeee
+  );
+
+  // Creating state of user data in app.tsx so its accessible by all children.
+  const [userDatabase, updateUserDatabase] = useState<Credentials[]>(userCredentials);
 
   const [battles, setBattles] = useState<Battle[]>(initialBattles);
 
@@ -25,7 +35,7 @@ function App() {
   };
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout loggedInUser={loggedInUser}/>}>
 
           {/* Render Main Menu Page */}
           <Route index element={<MainMenu />}
@@ -58,14 +68,18 @@ function App() {
           </Route>
 
           {/* Render Login Page & Create Account */}
-          <Route path="/accounts">
-            <Route 
-            path="login"
-            element={<LoginPage/>} 
-            />
-          </Route> 
-
-
+          <Route path="/accounts/login"
+            element={<LoginPage
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
+            userDatabase={userDatabase}/>}
+          />
+          <Route path="/accounts/createAccount"
+            element={<CreateAccount
+                        userDatabase={userDatabase}
+                        updateUserDatabase={updateUserDatabase}
+                    />}
+          />
       </Route>
     </Routes>
   );

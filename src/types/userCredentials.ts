@@ -1,4 +1,6 @@
 export type Credentials = {
-    username: string,
-    password: string
+    id?: number,
+    username?: string,
+    password?: string,
+    email?: string
 }
