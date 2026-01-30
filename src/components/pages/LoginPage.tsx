@@ -13,9 +13,9 @@ export function LoginPage () {
                 <LoginForm
                     attempt={attempt}
                     setAttempt={setAttempt}
-                    />
+                />
                 <LoginButton
-                attempt={attempt}
+                    attempt={attempt}
                 />
             </div>
         </>

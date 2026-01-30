@@ -26,6 +26,7 @@ export function CreateAccountForm(
                         onChange={(e) => createNewAccount({...newAccount, password: e.target.value})}
                         />
                     </div>
+
                     <div>
                         <label htmlFor="email">Email:</label>
                         <input type="text" name="email"

@@ -18,14 +18,13 @@ export function CreateAccountButton(
             </div>
             <button
             onClick={() => {
-                if(newAccount.email == "" || newAccount.email == null) {
-                    setErrorMessage("Email Cannot be empty");
-                } else if(newAccount.password == "" || newAccount.password == null) {
+                 if(newAccount.password == "" || newAccount.password == null) {
                     setErrorMessage("You must enter a password");
                 } else if(newAccount.username == "" || newAccount.username == null) {
                     setErrorMessage("You must enter a Username");
                 } else {
-                    
+                    // Add new account to 'database' and then return to login,
+                    // They should be able to use this new log in.
                 }
             }}>
                 Create Account
