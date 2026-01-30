@@ -1,17 +1,26 @@
 // import { useState } from "react";
+import { useNavigate } from "react-router";
 
 function MainMenu() {
 
+    let navigate = useNavigate();
+
     return (
         <>
-            <main>
-                <section className="StartMenu">
-                    <div className="MainButtons">
-                        <button>Create Battle</button>
-                        <button>Load Battle</button>
-                    </div>
-                </section>
-            </main>
+            <section className="StartMenu">
+                <div className="MainButtons">
+                    <button
+                    onClick={() => navigate("/create-battle")}
+                    >
+                        Create Battle
+                    </button>
+                    <button
+                    onClick={() => navigate("/load-battle")}
+                    >
+                        Load Battle
+                    </button>
+                </div>
+            </section>
         </>
     )
 }
