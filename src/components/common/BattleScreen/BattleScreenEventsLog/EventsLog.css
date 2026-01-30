@@ -1,11 +1,13 @@
 .EventsLog {
     padding: 1em 0;
-    width: 75%;
-    margin: 2em auto;
+    width: 100%;
+    height: 15%;
+    /* margin: 2em auto; */
     align-items: center;
     border-color: #ceb07a;
     border-width: 2px;
     border-style: solid;
+    border-radius: 2rem;
 }
 textarea {
     text-align: center;

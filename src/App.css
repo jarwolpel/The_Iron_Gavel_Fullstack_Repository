@@ -46,7 +46,7 @@ p {
   border-style: solid;
   border-color: #CEB07A;
   border-radius: 2rem;
-  width: 50%;
+  width: 60%;
   height: 15vh;
   margin-top: 2rem;
 }
@@ -63,6 +63,8 @@ p {
 .MainButtons button {
   width: 40%;
   height: 40%;
+  font-size:x-large;
+  font-weight: bold;
   margin: 2rem 2rem;
 }
 
