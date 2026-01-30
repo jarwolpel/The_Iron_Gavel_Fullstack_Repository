@@ -3,12 +3,20 @@ import { CreateAccountButton } from "../common/createAccount/createAccountButton
 import { CreateAccountForm } from "../common/createAccount/createAccountForm";
 import type { Credentials } from "../../types/userCredentials";
 
-export function CreateAccount() {
+export function CreateAccount(
+    {
+        userDatabase,
+        updateUserDatabase
+    }: {
+        userDatabase: Credentials[],
+        updateUserDatabase: React.Dispatch<React.SetStateAction<Credentials[]>>
+    }
+) {
     const [newAccount, createNewAccount] = useState<Credentials>(
         {
             username: "",
             id: 0,
-            email: "",
+            email: "Unset",
             password: ""
         }
     );
@@ -21,6 +29,10 @@ export function CreateAccount() {
                 />
                 <CreateAccountButton
                     newAccount={newAccount}
+                    createNewAccount={createNewAccount}
+                    userDatabase={userDatabase}
+                    updateUserDatabase={updateUserDatabase}
+                    
                 />
             </div>
         </>

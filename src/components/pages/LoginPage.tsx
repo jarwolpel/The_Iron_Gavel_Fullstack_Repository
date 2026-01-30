@@ -3,7 +3,13 @@ import { LoginForm } from "../common/LoginPage/Form";
 import { LoginButton } from "../common/LoginPage/LoginButton";
 import type { Credentials } from "../../types/userCredentials";
 
-export function LoginPage () {
+export function LoginPage (
+    {
+        userDatabase,
+    }: {
+        userDatabase: Credentials[],
+    }
+) {
     const [attempt, setAttempt] = useState<Credentials>(
         {username: "", password:""}
     );
@@ -16,6 +22,7 @@ export function LoginPage () {
                 />
                 <LoginButton
                     attempt={attempt}
+                    userDatabase={userDatabase}
                 />
             </div>
         </>
