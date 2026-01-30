@@ -22,7 +22,7 @@ export function CreateAccount(
     );
     return (
         <>
-            <div className="default-container-schema">
+            <div className="default-container-scheme">
                 <CreateAccountForm
                     newAccount={newAccount}
                     createNewAccount={createNewAccount}

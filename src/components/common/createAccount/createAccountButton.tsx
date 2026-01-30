@@ -18,6 +18,8 @@ export function CreateAccountButton(
     const [errorMessage, setErrorMessage] = useState<String>("");
 
     // VsCode says this might be not the best solution but it works for now.
+    // Note after merge. There was indeed some issues but it was fixed by refactoring the Router a tiny bit.
+    // If this problem becomes major come back and fix it.
     const navigator = useNavigate();
     return (
         <>
@@ -31,9 +33,6 @@ export function CreateAccountButton(
                 } else if(newAccount.password == "" || newAccount.password == null) {
                     setErrorMessage("You must enter a password");
                 } else {
-                    // Add new account to 'database' and then return to login,
-                    // They should be able to use this new log in.
-
                     createNewAccount({...newAccount, id: Date.now()});
                     updateUserDatabase([...userDatabase, newAccount])
                     navigator("/accounts/login");
