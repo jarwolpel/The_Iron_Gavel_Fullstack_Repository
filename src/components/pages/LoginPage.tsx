@@ -6,8 +6,12 @@ import type { Credentials } from "../../types/userCredentials";
 export function LoginPage (
     {
         userDatabase,
+        loggedInUser,
+        setLoggedInUser
     }: {
         userDatabase: Credentials[],
+        loggedInUser: Credentials,
+        setLoggedInUser: React.Dispatch<React.SetStateAction<Credentials>>
     }
 ) {
     const [attempt, setAttempt] = useState<Credentials>(
@@ -23,6 +27,8 @@ export function LoginPage (
                 <LoginButton
                     attempt={attempt}
                     userDatabase={userDatabase}
+                    loggedInUser={loggedInUser}
+                    setLoggedInUser={setLoggedInUser}
                 />
             </div>
         </>

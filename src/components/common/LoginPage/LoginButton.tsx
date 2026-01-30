@@ -6,10 +6,14 @@ import { useNavigate } from "react-router-dom";
 export function LoginButton(
     {
         attempt,
-        userDatabase
+        userDatabase,
+        loggedInUser,
+        setLoggedInUser,
     }: {
         attempt: Credentials,
-        userDatabase: Credentials[]
+        userDatabase: Credentials[],
+        loggedInUser: Credentials,
+        setLoggedInUser: React.Dispatch<React.SetStateAction<Credentials>>
     }
 ) {
     const [infoText, setInfoText] = useState<String>("");
@@ -24,6 +28,7 @@ export function LoginButton(
                     } else {
                         userDatabase.forEach(e => {
                             if(e.username == attempt.username && e.password == attempt.password) {
+                                setLoggedInUser({...loggedInUser, username: attempt.username});
                                 navigator("/");
                             } else {
                                 setInfoText("Unknown Credentials.");

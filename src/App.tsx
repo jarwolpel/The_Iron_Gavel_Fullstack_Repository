@@ -16,7 +16,9 @@ import type { Battle } from "../data/battleList";
 
 function App() {
 
-  //const [loggedInUser, setLoggedInUser] = useState<UserData | null>();
+  const [loggedInUser, setLoggedInUser] = useState<Credentials>(
+    {username:"Login"} // Funny work around go weeeeeee
+  );
 
   // Creating state of user data in app.tsx so its accessible by all children.
   const [userDatabase, updateUserDatabase] = useState<Credentials[]>(userCredentials);
@@ -33,7 +35,7 @@ function App() {
   };
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout loggedInUser={loggedInUser}/>}>
 
           {/* Render Main Menu Page */}
           <Route index element={<MainMenu />}
@@ -68,6 +70,8 @@ function App() {
           {/* Render Login Page & Create Account */}
           <Route path="/accounts/login"
             element={<LoginPage
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
             userDatabase={userDatabase}/>}
           />
           <Route path="/accounts/createAccount"
