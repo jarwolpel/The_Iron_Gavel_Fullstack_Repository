@@ -36,6 +36,12 @@ export const CharacterSelect = () => {
                     className={`character-card ${isSelected ? "selected" : ""}`}
                     onClick={() => toggleSelect(character)}
                     disabled={!isSelected && selected.length === 2}>
+                    {/* Character image */}
+                    <img
+                    src={character.image} 
+                    alt={character.name} 
+                    className="character-image"
+              />
                 <h3>{character.name}</h3>
 
                 <ul className="character-stats">
