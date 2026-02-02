@@ -1,0 +1,68 @@
+import { useState } from "react";
+import { characters } from "../../../../data/characterList";
+import type { Character } from "../../../../data/characterList";
+import "./Characterscreen.css";
+
+export const CharacterSelect = () => {
+  const [selected, setSelected] = useState<Character[]>([]);
+
+  const toggleSelect = (character: Character) => {
+    setSelected((prev) => {
+        const isSelected = prev.some(c => c.id === character.id);
+
+            if (isSelected) {
+                return prev.filter(c => c.id !== character.id);
+            }
+
+            if (prev.length === 2) {
+                return prev;
+            }
+
+        return [...prev, character];
+        });
+    };
+
+    return (
+    <div className="character-select">
+        <h1>Select 2 Characters</h1>
+
+        <div className="character-grid">
+        {characters.map((character) => {
+            const isSelected = selected.some(c => c.id === character.id);
+
+            return (
+                <button
+                    key={character.id}
+                    className={`character-card ${isSelected ? "selected" : ""}`}
+                    onClick={() => toggleSelect(character)}
+                    disabled={!isSelected && selected.length === 2}>
+                <h3>{character.name}</h3>
+
+                <ul className="character-stats">
+                    <li>
+                        <img src={character.healthimg} alt="Health" className="stat-icon" />
+                        {character.health}
+                    </li>
+                    <li>
+                        <img src={character.swordimg} alt="Damage" className="stat-icon" />
+                        {character.damage}
+                    </li>
+                    <li>
+                        <img src={character.shieldimg} alt="Armor" className="stat-icon" />
+                        {character.armor}
+                        </li>
+                    </ul>
+                    </button>
+                );
+            })}
+        </div>
+
+            <button
+                className="start-battle"
+                disabled={selected.length !== 2}
+                onClick={() => console.log("Selected Characters:", selected)}>
+                Start Battle
+            </button>
+        </div>
+    );
+};

@@ -12,6 +12,7 @@ import type { Credentials } from "./types/userCredentials";
 import { userCredentials } from "../data/userCredentials";
 import { initialBattles } from "../data/battleList";
 import type { Battle } from "../data/battleList";
+import { CharacterSelect } from "./components/common/characterselect/Characterscreen";
 
 
 function App() {
@@ -81,6 +82,11 @@ function App() {
                     />}
           />
       </Route>
+      <Route
+      path="/test-character-select"
+      element={<CharacterSelect />}
+      />
+
     </Routes>
   );
 }
