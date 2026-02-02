@@ -52,6 +52,11 @@ function App() {
               element={"<CharacterSelect />"}
             />
           </Route>
+          {/**TEST ROUT for character screen */}
+            <Route
+            path="/test-character-select2"
+            element={<CharacterSelect />}>
+            </Route>
 
           {/* Render Load Battle screen */}
           <Route 
@@ -84,9 +89,8 @@ function App() {
       </Route>
       <Route
       path="/test-character-select"
-      element={<CharacterSelect />}
-      />
-
+      element={<CharacterSelect />}/>
+      
     </Routes>
   );
 }
