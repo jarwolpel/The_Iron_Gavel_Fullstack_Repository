@@ -2,7 +2,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { MenuBox } from "../common/menu-box/MenuBox";
+import { MenuBox } from "../common/menu-box/menuBox";
 
 interface CreateBattleProps {
   onBattleCreate: (name: string, description: string) => void;
