@@ -1,4 +1,4 @@
-import { MenuBox } from "../common/menu-box/MenuBox"
+import { MenuBox } from "../common/menu-box/menuBox"
 import { BattleSelect } from "../common/BattleHistory/BattleSelect"
 import type { Battle } from "../../../data/battleList";
 
