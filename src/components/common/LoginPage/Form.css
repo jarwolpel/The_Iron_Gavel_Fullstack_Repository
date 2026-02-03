@@ -1,0 +1,23 @@
+.login-form {
+    align-items: center;
+    margin: 0 auto;
+    width: 60%;
+    border-radius: 2rem;
+}
+
+.login-button {
+    font-size: 1.5em;
+    margin: 2rem 1rem;
+}
+
+.login-button a:hover{
+    background-color: red;
+}
+
+.create-account-button {
+    margin: 0 0 2em 0;
+    padding: 0 1em;
+}
+input {
+    margin: 1rem 1rem;
+}

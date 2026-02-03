@@ -31,6 +31,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   width: 100%;
+  /* background-color: #1B2529; */
+  background-image: url("./assets/killian-prevost-tour.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 h1 {

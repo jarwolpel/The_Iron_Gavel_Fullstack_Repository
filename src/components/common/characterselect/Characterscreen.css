@@ -1,0 +1,69 @@
+.character-select {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border-color: #ceb07a;
+  border-width: 2px;
+  border-style: solid;
+  background-color: #120f0a;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.character-card.selected {
+  border-color: #28a745;
+  background-color: #2035ad;
+}
+
+.character-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-family: "Cinzel Decorative", serif;
+}
+
+.character-stats {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.character-stats li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.character-image {
+  width: 80%; 
+  height: auto;
+  object-fit: cover; 
+  border-radius: 8px; 
+}
+
+.search-form {
+    margin-bottom: 20px;
+}
+
+.search-form input {
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

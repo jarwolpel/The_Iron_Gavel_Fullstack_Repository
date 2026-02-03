@@ -1,0 +1,20 @@
+.MenuBox {
+  display: flex;
+  justify-content: center;
+  background: #120E0A;
+  border-style: solid;
+  border-color: #CEB07A;
+  border-radius: 2rem;
+  width: 50%;
+  height: 50vh;
+}
+
+.MenuBox div {
+    /* background-color: rgb(54, 43, 29); */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center;
+    align-content: center; */
+}

@@ -1,68 +1,99 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route} from "react-router-dom";
 import './App.css'
-import Nav from './components/common/nav/Nav'
-import EventsLog, { appendEventToLog } from './components/common/BattleScreenEventsLog/EventsLog'
-import { characters } from './components/BattleScreen/CharacterList/characterList'
-import CharacterCard from './components/BattleScreen/BattleScreen'
+import { useState } from "react";
+import { Layout } from './components/common/layout/layout';
+import MainMenu from "./components/pages/MainMenu";
+import BattleScreen from "./components/common/BattleScreen/BattleScreen";
+import CreateBattle from "./components/pages/CreateBattle";
+import LoadBattle from "./components/pages/LoadBattle";
+import { LoginPage } from "./components/pages/LoginPage";
+import { CreateAccount } from "./components/pages/CreateAccount";
+import type { Credentials } from "./types/userCredentials";
+import { userCredentials } from "../data/userCredentials";
+import { initialBattles } from "../data/battleList";
+import type { Battle } from "../data/battleList";
+import { CharacterSelect } from "./components/common/characterselect/Characterscreen";
+import { Favorites } from "./components/pages/FavoriteCharacter";
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [loggedInUser, setLoggedInUser] = useState<Credentials>(
+    {username:"Login"} // Funny work around go weeeeeee
+  );
+
+  // Creating state of user data in app.tsx so its accessible by all children.
+  const [userDatabase, updateUserDatabase] = useState<Credentials[]>(userCredentials);
+
+  const [battles, setBattles] = useState<Battle[]>(initialBattles);
+
+  const handleBattleCreate = (name: string, description: string) => {
+    const newBattle: Battle = {
+      id: Date.now().toString(), // Simple ID generation
+      name,
+      description,
+    };
+    setBattles([...battles, newBattle]);
+  };
   return (
-    <>
-      <Nav />
-        {/* Battle Panel to display character cards */}
-        <div className="battle-panel">
-            <div className="character-panel">
-                {characters.map((character, index) => (
-                    <CharacterCard
-                        key={index}
-                        name={character.name}
-                        health={character.health}
-                        damage={character.damage}
-                        armor={character.armor}
-                        />
-                    ))}
-                </div>
-            </div>
-      <EventsLog />
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout loggedInUser={loggedInUser}/>}>
+
+          {/* Render Main Menu Page */}
+          <Route index element={<MainMenu />}
+          />
+
+          {/* Render Create Battle screen */}
+          <Route 
+            path="/create-battle"
+            element={<CreateBattle onBattleCreate={handleBattleCreate} />}
+            >
+            <Route 
+              path="characterselect"
+              element={<CharacterSelect />}
+            />
+          </Route>
+          {/*TEST ROUT for character screen*/}
+            <Route
+            path="/test-character-select2"
+            element={<CharacterSelect />}>
+            </Route>
+
+          {/* Render Load Battle screen */}
+          <Route 
+            path="/load-battle"
+            element={<LoadBattle battles={battles}/>}
+            >
+          </Route>
+
+          {/* Render Battle screen */}
+          <Route path="/battles">
+            <Route 
+            path="battle-screen"
+            element={<BattleScreen />}
+            />
+          </Route>
+
+          {/* Render Login Page & Create Account */}
+          <Route path="/accounts/login"
+            element={<LoginPage
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
+            userDatabase={userDatabase}/>}
+          />
+          <Route path="/accounts/createAccount"
+            element={<CreateAccount
+                        userDatabase={userDatabase}
+                        updateUserDatabase={updateUserDatabase}
+                    />}
+          />
+          {/* Favorites screen */}
+          <Route 
+            path="/Favorites"
+            element={<Favorites/>}
+            >
+          </Route>
+      </Route>
+    </Routes>
+  );
 }
-
-// Test example of appending to event log
-// Can add a bulk import function later if needed but for now this
-// should be good.
-appendEventToLog("Player 1 Swings his Sword!");
-appendEventToLog("Player 2 Dodges!");
-appendEventToLog("Player 2 Shoots an arrow");
-appendEventToLog("Player 1 is hit for 4 damage!");
-appendEventToLog("Player 1 charges at Player 2");
-appendEventToLog("Player 2 is knocked to the ground!");
-appendEventToLog("Player 1 Stabs his sword.");
-appendEventToLog("Player 2 is hit for 10 damage!");
-
-
 export default App
