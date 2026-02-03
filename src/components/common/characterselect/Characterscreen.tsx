@@ -4,30 +4,43 @@ import type { Character } from "../../../../data/characterList";
 import "./Characterscreen.css";
 
 export const CharacterSelect = () => {
-  const [selected, setSelected] = useState<Character[]>([]);
+    const [selected, setSelected] = useState<Character[]>([]);
+    const [search, setSearch] = useState<string>("");
 
-  const toggleSelect = (character: Character) => {
-    setSelected((prev) => {
-        const isSelected = prev.some(c => c.id === character.id);
+    const toggleSelect = (character: Character) => {
+        setSelected((prev) => {
+            const isSelected = prev.some(c => c.id === character.id);
 
-            if (isSelected) {
-                return prev.filter(c => c.id !== character.id);
-            }
+                if (isSelected) {
+                    return prev.filter(c => c.id !== character.id);
+                }
 
-            if (prev.length === 2) {
-                return prev;
-            }
+                if (prev.length === 2) {
+                    return prev;
+                }
 
-        return [...prev, character];
+            return [...prev, character];
         });
+       setSearch("");
     };
+
+    const filteredCharacters = characters.filter((character) =>
+        character.name.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
     <div className="character-select">
         <h1>Select 2 Characters</h1>
-
+            <div className="search-form">
+                <input
+                    type="text"
+                    placeholder="Search Character list..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </div>            
         <div className="character-grid">
-        {characters.map((character) => {
+        {filteredCharacters.map((character) => {
             const isSelected = selected.some(c => c.id === character.id);
 
             return (
@@ -40,8 +53,7 @@ export const CharacterSelect = () => {
                     <img
                     src={character.image} 
                     alt={character.name} 
-                    className="character-image"
-              />
+                    className="character-image"/>
                 <h3>{character.name}</h3>
 
                 <ul className="character-stats">

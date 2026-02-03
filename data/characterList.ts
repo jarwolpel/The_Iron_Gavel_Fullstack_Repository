@@ -16,6 +16,7 @@ export interface Character{
     healthimg: string;
     shieldimg:string;
     swordimg:string;
+    isFavorite?:boolean;
 }
 
 export const characters: Character[] = [
