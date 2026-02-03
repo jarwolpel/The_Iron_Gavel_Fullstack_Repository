@@ -16,6 +16,7 @@ export function Nav(
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Battles</a></li>
                 <li><a href="#">Characters</a></li>
+                <li><a href="#">Favorites</a></li>
                 <li><a href="#"><button>Login</button></a></li>
             </ul>
             <div className="container">
@@ -27,10 +28,13 @@ export function Nav(
                         <NavLink to="/" end>Home</NavLink>    
                     </div>
                     <div className="item">
-                        <NavLink to="/create-battle/characterselect">Character Select</NavLink>
+                        <NavLink to="/test-character-select2">Character Select</NavLink>
                     </div>
                     <div className="item">
                         <NavLink to="/battles/battle-screen">Battle Screen</NavLink>
+                    </div>
+                    <div className="item">
+                        <NavLink to="/Favorites">Favorite</NavLink>
                     </div>
                     <div className="item">
                         <NavLink to="/accounts/login"><button>{loggedInUser.username}</button></NavLink>

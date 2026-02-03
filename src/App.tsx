@@ -12,7 +12,8 @@ import type { Credentials } from "./types/userCredentials";
 import { userCredentials } from "../data/userCredentials";
 import { initialBattles } from "../data/battleList";
 import type { Battle } from "../data/battleList";
-
+import { CharacterSelect } from "./components/common/characterselect/Characterscreen";
+import { Favorites } from "./components/pages/FavoriteCharacter";
 
 function App() {
 
@@ -48,9 +49,14 @@ function App() {
             >
             <Route 
               path="characterselect"
-              element={"<CharacterSelect />"}
+              element={<CharacterSelect />}
             />
           </Route>
+          {/*TEST ROUT for character screen*/}
+            <Route
+            path="/test-character-select2"
+            element={<CharacterSelect />}>
+            </Route>
 
           {/* Render Load Battle screen */}
           <Route 
@@ -80,6 +86,12 @@ function App() {
                         updateUserDatabase={updateUserDatabase}
                     />}
           />
+          {/* Favorites screen */}
+          <Route 
+            path="/Favorites"
+            element={<Favorites/>}
+            >
+          </Route>
       </Route>
     </Routes>
   );
