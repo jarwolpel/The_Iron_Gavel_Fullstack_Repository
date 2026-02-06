@@ -37,11 +37,14 @@ export function Nav(
                         <NavLink to="/Favorites">Favorite</NavLink>
                     </div>
                     <div className="item">
-                        <NavLink to="/accounts/login"><button>{loggedInUser.username}</button></NavLink>
+                        <NavLink to="/accounts/login"><button>Login</button></NavLink>
     
                     </div>
-                    <div className="item">
-                        <a href="#"><img src="./src/assets/account_circle.svg" alt="profile pic"></img></a>
+                    <div className="item profile">
+                        <a href="#">
+                            <img src="./src/assets/account_circle.svg" alt="profile pic"></img>
+                            <p>{loggedInUser.username}</p>
+                        </a>
                     </div>
                     <div className="item">
                         <a href="#"><img src="./src/assets/menu.svg" alt="hamburger menu"></img></a>

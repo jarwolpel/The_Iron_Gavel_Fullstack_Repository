@@ -13,7 +13,6 @@ nav {
 
 }
 
-
 .item {
     /* background-color: aqua; */
     width: auto;
@@ -29,9 +28,19 @@ nav {
     margin: 0;
 }
 
+.item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile {
+    width: 8rem;
+}
+
 a {
     text-decoration: none;
-    margin: 0 2rem;
+    margin: 0 1.5rem;
 }
 
 a h1 {
