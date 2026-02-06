@@ -6,7 +6,7 @@
   border-color: #CEB07A;
   border-radius: 2rem;
   width: 50%;
-  height: 50vh;
+  min-height: 50vh;
 }
 
 .MenuBox div {

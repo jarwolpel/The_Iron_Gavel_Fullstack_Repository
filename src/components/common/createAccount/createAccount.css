@@ -1,7 +1,4 @@
-form {
-    margin: 2em 4em 3em 4em;
+.create-account-form {
+    margin: 1rem 1rem;
 }
 
-button {
-    margin: 0 0 2em 0;
-}
