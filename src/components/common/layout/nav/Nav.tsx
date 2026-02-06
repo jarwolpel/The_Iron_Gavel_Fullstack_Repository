@@ -41,6 +41,9 @@ export function Nav(
     
                     </div>
                     <div className="item">
+                        <a href="#"><img src="./src/assets/account_circle.svg" alt="profile pic"></img></a>
+                    </div>
+                    <div className="item">
                         <a href="#"><img src="./src/assets/menu.svg" alt="hamburger menu"></img></a>
                     </div>
                     

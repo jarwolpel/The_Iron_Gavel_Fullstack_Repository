@@ -23,6 +23,12 @@ nav {
     justify-content: center;
 }
 
+.item img {
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+}
+
 a {
     text-decoration: none;
     margin: 0 2rem;
@@ -38,16 +44,9 @@ a h1 {
 
 .links {
     display: flex;
-
 }
 
 nav a {
-    /* height: 100%; */
-    /* margin: 0 2em; */
-    /* text-decoration: none; */
-    /* text-align: center; */
-    /* display: flex; */
-    /* align-items: center; */
     color: #ffffff;
     border-bottom: 1px solid transparent;
     transition: all 0.3s ease;

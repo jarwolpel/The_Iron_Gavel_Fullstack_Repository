@@ -20,32 +20,34 @@ export function LoginButton(
     const navigator = useNavigate();
     return (
         <>
-            <div>
-                <button className="login-button"
+            <div className="login-buttons">
+                <div>
+                    <button
+                    onClick={() => {
+                        if(attempt.password == "" || attempt.username == "") {
+                            setInfoText("Please enter some credentials");
+                        } else {
+                            userDatabase.forEach(e => {
+                                if(e.username == attempt.username && e.password == attempt.password) {
+                                    setLoggedInUser({...loggedInUser, username: attempt.username});
+                                    navigator("/");
+                                } else {
+                                    setInfoText("Unknown Credentials.");
+                                }
+                            });
+                        }
+                    }}>Log In</button>
+                </div>
+                <div>
+                    <p>{infoText}</p>
+                </div>
+                <button className="create-account-button"
                 onClick={() => {
-                    if(attempt.password == "" || attempt.username == "") {
-                        setInfoText("Please enter some credentials");
-                    } else {
-                        userDatabase.forEach(e => {
-                            if(e.username == attempt.username && e.password == attempt.password) {
-                                setLoggedInUser({...loggedInUser, username: attempt.username});
-                                navigator("/");
-                            } else {
-                                setInfoText("Unknown Credentials.");
-                            }
-                        });
-                    }
-                }}>Log In</button>
+                    navigator("/accounts/createAccount");
+                }}>
+                    Create Account
+                </button>
             </div>
-            <div>
-                <p>{infoText}</p>
-            </div>
-            <button className="create-account-button"
-            onClick={() => {
-                navigator("/accounts/createAccount");
-            }}>
-                Create Account
-            </button>
         </>
     );
 }
