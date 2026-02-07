@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CreateAccountButton } from "../common/createAccount/createAccountButton";
 import { CreateAccountForm } from "../common/createAccount/createAccountForm";
 import type { Credentials } from "../../types/userCredentials";
+import { MenuBox } from "../common/menu-box/menuBox";
 
 export function CreateAccount(
     {
@@ -22,19 +23,20 @@ export function CreateAccount(
     );
     return (
         <>
-            <div className="default-container-scheme">
-                <CreateAccountForm
-                    newAccount={newAccount}
-                    createNewAccount={createNewAccount}
-                />
-                <CreateAccountButton
-                    newAccount={newAccount}
-                    createNewAccount={createNewAccount}
-                    userDatabase={userDatabase}
-                    updateUserDatabase={updateUserDatabase}
-                    
-                />
-            </div>
+            <MenuBox>
+                <div>
+                    <CreateAccountForm
+                        newAccount={newAccount}
+                        createNewAccount={createNewAccount}
+                    />
+                    <CreateAccountButton
+                        newAccount={newAccount}
+                        createNewAccount={createNewAccount}
+                        userDatabase={userDatabase}
+                        updateUserDatabase={updateUserDatabase}
+                    />
+                </div>
+            </MenuBox>
         </>
     );
 }

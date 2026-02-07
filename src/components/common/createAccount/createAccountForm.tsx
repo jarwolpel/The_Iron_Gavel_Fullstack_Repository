@@ -15,7 +15,7 @@ export function CreateAccountForm(
     const [emailVisibility, toggleEmailVisibility] = useState(false); 
     return(
         <>
-            <form action="">
+            <form className="create-account-form" action="">
                 <fieldset>
                     <div>
                         <label htmlFor="username">Username:</label>

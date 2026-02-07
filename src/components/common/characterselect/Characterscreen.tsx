@@ -29,7 +29,9 @@ export const CharacterSelect = () => {
     );
 
     return (
-    <div className="character-select">
+    <div 
+    className="character-select"
+    >
         <h1>Select 2 Characters</h1>
             <div className="search-form">
                 <input
