@@ -1,8 +1,4 @@
-export interface Battle {
-    id: string;
-    name: string;
-    description: string;
-}
+import type { Battle } from "../../types/battle";
 
 export const initialBattles: Battle[] = [
     {
