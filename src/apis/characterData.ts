@@ -5,19 +5,7 @@ import chief from "./characterImages/Master-Chief.jpeg"
 import healthIcon from "../assets/icons/health.png"
 import shieldIcon from "../assets/icons/shield.png"
 import swordIcon from "../assets/icons/sword.png"
-
-export interface Character{
-    id: string;
-    name: string;
-    health: number;
-    damage: number;
-    armor: number;
-    image: string;
-    healthimg: string;
-    shieldimg:string;
-    swordimg:string;
-    isFavorite?:boolean;
-}
+import type { Character } from "../types/character"
 
 export const characters: Character[] = [
     {   
