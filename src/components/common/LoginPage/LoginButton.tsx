@@ -2,6 +2,7 @@ import "./Form.css";
 import type { Credentials } from "../../../types/userCredentials";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { verifyLogin } from "../../../services/LoginServices/verify";
 
 export function LoginButton(
     {
@@ -27,14 +28,12 @@ export function LoginButton(
                         if(attempt.password == "" || attempt.username == "") {
                             setInfoText("Please enter some credentials");
                         } else {
-                            userDatabase.forEach(e => {
-                                if(e.username == attempt.username && e.password == attempt.password) {
-                                    setLoggedInUser({...loggedInUser, username: attempt.username});
-                                    navigator("/");
-                                } else {
-                                    setInfoText("Unknown Credentials.");
-                                }
-                            });
+                            if(verifyLogin({attempt, userDatabase})){
+                                setLoggedInUser({...loggedInUser, username: attempt.username});
+                                navigator("/");
+                            } else {
+                                setInfoText("Unknown Credentials.");
+                            }
                         }
                     }}>Log In</button>
                 </div>
