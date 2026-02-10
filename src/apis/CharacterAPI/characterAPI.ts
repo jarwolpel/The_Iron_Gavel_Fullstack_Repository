@@ -15,7 +15,7 @@ export function getCharacterByID(characterID: string): Character {
     return character;
 }
 
-export async function updateUserData(character: Character) {
+export async function updateCharacterData(character: Character) {
     const characterIndex = characters.findIndex(index => index.id === character.id);
 
     if(characterIndex === -1) {
@@ -26,7 +26,7 @@ export async function updateUserData(character: Character) {
     return characters[characterIndex];
 }
 
-export async function deleteUserCredentials(characterID: string) {
+export async function deleteCharacter(characterID: string) {
     const characterIndex = characters.findIndex(index => index.id === characterID);
 
     if(characterIndex === -1) {

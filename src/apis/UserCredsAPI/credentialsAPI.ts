@@ -1,4 +1,4 @@
-import type { Credentials } from "../types/userCredentials";
+import type { Credentials } from "../../types/userCredentials";
 import { userCredentials } from "./mockUserCredentials";
 
 export function fetchCredentials(): Credentials[] {
