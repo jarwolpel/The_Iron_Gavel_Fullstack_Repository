@@ -1,6 +1,6 @@
 import { MenuBox } from "../common/menu-box/menuBox"
 import { BattleSelect } from "../common/BattleHistory/BattleSelect"
-import type { Battle } from "../../../data/battleList";
+import type { Battle } from "../../types/battle";
 
 interface LoadBattleProps {
     battles: Battle[];

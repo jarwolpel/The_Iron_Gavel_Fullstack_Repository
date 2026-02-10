@@ -1,6 +1,6 @@
 import React from 'react';
 import './Battlescreen.css';
-import { characters } from '../../../../data/characterList';
+import { fetchCharacters } from '../../../apis/CharacterAPI/characterAPI';
 import EventsLog from './BattleScreenEventsLog/EventsLog';
 
 interface CharacterCardStats {
@@ -12,6 +12,7 @@ interface CharacterCardStats {
 
 
 export function BattleScreen( ){
+    const characters = fetchCharacters();
     return (
         <>
             <div className='char-container'>

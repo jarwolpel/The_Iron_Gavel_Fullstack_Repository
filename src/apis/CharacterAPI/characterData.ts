@@ -1,11 +1,11 @@
-import khan from "./characterImages/Genghis_Khan.jpeg"
-import nikola from "./characterImages/Nikola-Tesla.jpg"
-import thomas from "./characterImages/Thomas_Edison.jpg"
-import chief from "./characterImages/Master-Chief.jpeg"
-import healthIcon from "../assets/icons/health.png"
-import shieldIcon from "../assets/icons/shield.png"
-import swordIcon from "../assets/icons/sword.png"
-import type { Character } from "../types/character"
+import khan from "../characterImages/Genghis_Khan.jpeg";
+import nikola from "../characterImages/Nikola-Tesla.jpg";
+import thomas from "../characterImages/Thomas_Edison.jpg";
+import chief from "../characterImages/Master-Chief.jpeg";
+import healthIcon from "../../assets/icons/health.png";
+import shieldIcon from "../../assets/icons/shield.png";
+import swordIcon from "../../assets/icons/sword.png";
+import type { Character } from "../../types/character";
 
 export const characters: Character[] = [
     {   

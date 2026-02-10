@@ -1,6 +1,11 @@
+/**----------------React----------------- */
 import { Routes, Route} from "react-router-dom";
-import './App.css'
 import { useState } from "react";
+
+/**----------------Misc----------------- */
+import './App.css'
+
+/**----------------Components----------------- */
 import { Layout } from './components/common/layout/layout';
 import MainMenu from "./components/pages/MainMenu";
 import BattleScreen from "./components/common/BattleScreen/BattleScreen";
@@ -8,12 +13,17 @@ import CreateBattle from "./components/pages/CreateBattle";
 import LoadBattle from "./components/pages/LoadBattle";
 import { LoginPage } from "./components/pages/LoginPage";
 import { CreateAccount } from "./components/pages/CreateAccount";
-import type { Credentials } from "./types/userCredentials";
-import { userCredentials } from "../data/userCredentials";
-import { initialBattles } from "../data/battleList";
-import type { Battle } from "../data/battleList";
 import { CharacterSelect } from "./components/common/characterselect/Characterscreen";
 import { Favorites } from "./components/pages/FavoriteCharacter";
+
+
+/**----------------APIS----------------- */
+import { fetchCredentials } from "./apis/UserCredsAPI/credentialsAPI";
+import { fetchBattles } from "./apis/BattlesAPI/battleAPI";
+
+/**----------------Types----------------- */
+import type { Credentials } from "./types/userCredentials";
+import type { Battle } from "./types/battle";
 
 function App() {
 
@@ -22,9 +32,9 @@ function App() {
   );
 
   // Creating state of user data in app.tsx so its accessible by all children.
-  const [userDatabase, updateUserDatabase] = useState<Credentials[]>(userCredentials);
+  const [userDatabase, updateUserDatabase] = useState<Credentials[]>(fetchCredentials);
 
-  const [battles, setBattles] = useState<Battle[]>(initialBattles);
+  const [battles, setBattles] = useState<Battle[]>(fetchBattles);
 
   const handleBattleCreate = (name: string, description: string) => {
     const newBattle: Battle = {
@@ -49,7 +59,7 @@ function App() {
             >
             <Route 
               path="characterselect"
-              element={<CharacterSelect />}
+              element={<CharacterSelect/>}
             />
           </Route>
           {/*TEST ROUT for character screen*/}
