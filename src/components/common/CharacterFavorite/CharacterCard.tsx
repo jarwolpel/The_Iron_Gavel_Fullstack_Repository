@@ -1,4 +1,4 @@
-import type { Character } from "../../../../data/characterList";
+import type { Character } from "../../../types/character";
 import CheckmarkIcon  from "../../../assets/icons/Checkmark.svg";
 import BoxIcon  from "../../../assets/icons/box.svg";
 import "./CharacterCard.css";
