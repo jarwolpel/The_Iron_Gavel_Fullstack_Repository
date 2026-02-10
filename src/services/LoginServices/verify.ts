@@ -3,10 +3,10 @@ import type { Credentials } from "../../types/userCredentials";
 export function verifyLogin(
     {
         attempt,
-        userDatabase,
+        userDatabase
     }: {
         attempt: Credentials, 
-        userDatabase: Credentials[],
+        userDatabase: Credentials[]
     }
 ): Boolean {
     userDatabase.forEach(e => {
