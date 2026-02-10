@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Character } from "../../../../data/characterList";
+import type { Character } from "../../../types/character";
 import { CharacterCard } from "./CharacterCard";
 import "./CharacterdListDisplay.css";
 

@@ -1,4 +1,4 @@
-import type { Battle } from "../../../../data/battleList"
+import type { Battle } from "../../../types/battle";
 
 interface BattleSelectProps {
     battle: Battle;

@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { characters } from "../../../../data/characterList";
-import type { Character } from "../../../../data/characterList";
+import { fetchCharacters } from "../../../apis/CharacterAPI/characterAPI";
+import type { Character } from "../../../types/character";
 import "./Characterscreen.css";
 
-export const CharacterSelect = () => {
+export const CharacterSelect = (
+) => {
     const [selected, setSelected] = useState<Character[]>([]);
     const [search, setSearch] = useState<string>("");
+
+    const characters = fetchCharacters();
 
     const toggleSelect = (character: Character) => {
         setSelected((prev) => {
@@ -24,7 +27,7 @@ export const CharacterSelect = () => {
        setSearch("");
     };
 
-    const filteredCharacters = characters.filter((character) =>
+    const filteredCharacters = characters.filter((character: Character) =>
         character.name.toLowerCase().includes(search.toLowerCase())
     );
 
@@ -42,7 +45,7 @@ export const CharacterSelect = () => {
                 />
             </div>            
         <div className="character-grid">
-        {filteredCharacters.map((character) => {
+        {filteredCharacters.map((character: Character) => {
             const isSelected = selected.some(c => c.id === character.id);
 
             return (

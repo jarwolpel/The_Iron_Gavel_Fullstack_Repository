@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { Character } from "../../../data/characterList";
+import type { Character } from "../../types/character";
 import { Search } from "../common/CharacterFavorite/search";
 import { CharacterListDisplay } from "../common/CharacterFavorite/CharacterListDisplay";
-import { characters as initialCharacters } from "../../../data/characterList";
+import { fetchCharacters as initialCharacters } from "../../apis/CharacterAPI/characterAPI";
 import { MenuBox } from "../common/menu-box/menuBox";
 
 export function Favorites() {
