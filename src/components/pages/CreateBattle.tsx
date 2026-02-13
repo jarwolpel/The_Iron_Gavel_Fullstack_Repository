@@ -19,7 +19,7 @@ function CreateBattle({ onBattleCreate }: CreateBattleProps) {
       onBattleCreate(name, description);
       setName("");
       setDescription("");
-      navigate("/load-battle"); 
+      navigate("/battles/battle-screen"); 
     }
   };
 
@@ -46,7 +46,7 @@ function CreateBattle({ onBattleCreate }: CreateBattleProps) {
               required
             />
           </div>
-          <input type="submit" value="Create Battle" />
+          <input type="submit" value="Start Battle" />
         </form>
       </div>
     </MenuBox>
