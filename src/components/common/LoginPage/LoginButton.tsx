@@ -3,18 +3,16 @@ import type { Credentials } from "../../../types/userCredentials";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { verifyLogin } from "../../../services/LoginServices/verify";
+import { setLoggedInUser } from "../../../hooks/setLoggedInUser";
+
 
 export function LoginButton(
     {
         attempt,
         userDatabase,
-        loggedInUser,
-        setLoggedInUser,
     }: {
         attempt: Credentials,
         userDatabase: Credentials[],
-        loggedInUser: Credentials,
-        setLoggedInUser: React.Dispatch<React.SetStateAction<Credentials>>
     }
 ) {
     const [infoText, setInfoText] = useState<String>("");
@@ -29,7 +27,7 @@ export function LoginButton(
                             setInfoText("Please enter some credentials");
                         } else {
                             if(verifyLogin({attempt, userDatabase})){
-                                setLoggedInUser({...loggedInUser, username: attempt.username});
+                                setLoggedInUser(attempt.username);
                                 navigator("/");
                             } else {
                                 setInfoText("Unknown Credentials.");

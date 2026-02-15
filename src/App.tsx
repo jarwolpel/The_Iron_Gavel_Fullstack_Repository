@@ -82,8 +82,6 @@ function App() {
           {/* Render Login Page & Create Account */}
           <Route path="/accounts/login"
             element={<LoginPage
-            loggedInUser={loggedInUser}
-            setLoggedInUser={setLoggedInUser}
             userDatabase={userDatabase}/>}
           />
           <Route path="/accounts/createAccount"
