@@ -78,10 +78,7 @@ function App() {
             element={<LoginPage/>}
           />
           <Route path="/accounts/createAccount"
-            element={<CreateAccount
-                        userDatabase={userDatabase}
-                        updateUserDatabase={updateUserDatabase}
-                    />}
+            element={<CreateAccount/>}
           />
           {/* Favorites screen */}
           <Route 

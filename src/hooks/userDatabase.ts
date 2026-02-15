@@ -17,3 +17,20 @@ export function userDatabase(newUser?: Credentials): Credentials[]{
     
     return userDatabase;
 }
+
+export function createNewAccount(account?: Credentials): Credentials {
+    const [newAccount, createNewAccount] = useState<Credentials>(
+        {
+            username: "",
+            id: 0,
+            email: "Unset",
+            password: ""
+        }
+    );
+
+    if(account) {
+        createNewAccount({...newAccount, id: Date.now()});
+    }
+
+    return newAccount;
+}
