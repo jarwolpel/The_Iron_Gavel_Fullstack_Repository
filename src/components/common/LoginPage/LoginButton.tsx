@@ -9,10 +9,8 @@ import { setLoggedInUser } from "../../../hooks/setLoggedInUser";
 export function LoginButton(
     {
         attempt,
-        userDatabase,
     }: {
         attempt: Credentials,
-        userDatabase: Credentials[],
     }
 ) {
     const [infoText, setInfoText] = useState<String>("");
@@ -26,7 +24,7 @@ export function LoginButton(
                         if(attempt.password == "" || attempt.username == "") {
                             setInfoText("Please enter some credentials");
                         } else {
-                            if(verifyLogin({attempt, userDatabase})){
+                            if(verifyLogin({attempt})){
                                 setLoggedInUser(attempt.username);
                                 navigator("/");
                             } else {

@@ -18,18 +18,12 @@ import { Favorites } from "./components/pages/FavoriteCharacter";
 
 
 /**----------------APIS----------------- */
-import { fetchCredentials } from "./apis/UserCredsAPI/credentialsAPI";
 import { fetchBattles } from "./apis/BattlesAPI/battleAPI";
 
 /**----------------Types----------------- */
-import type { Credentials } from "./types/userCredentials";
 import type { Battle } from "./types/battle";
 
 function App() {
-
-  // Creating state of user data in app.tsx so its accessible by all children.
-  const [userDatabase, updateUserDatabase] = useState<Credentials[]>(fetchCredentials);
-
   const [battles, setBattles] = useState<Battle[]>(fetchBattles);
 
   const handleBattleCreate = (name: string, description: string) => {
@@ -81,8 +75,7 @@ function App() {
 
           {/* Render Login Page & Create Account */}
           <Route path="/accounts/login"
-            element={<LoginPage
-            userDatabase={userDatabase}/>}
+            element={<LoginPage/>}
           />
           <Route path="/accounts/createAccount"
             element={<CreateAccount

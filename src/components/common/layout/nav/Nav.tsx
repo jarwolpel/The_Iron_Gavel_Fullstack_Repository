@@ -7,9 +7,6 @@ export function Nav() {
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
 
-    // Putting logged in user into a variable
-    const loggedInUser = setLoggedInUser();
-
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (
@@ -60,7 +57,7 @@ export function Nav() {
                         <div className="item profile">
                             <a href="#">
                                 <img src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p>{loggedInUser}</p>
+                                <p>{setLoggedInUser()}</p>
                             </a>
                         </div>
                     </div>
@@ -93,7 +90,7 @@ export function Nav() {
                         <div className="item profile">
                             <a href="#">
                                 <img className="profile-bits" src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p className="profile-bits">{loggedInUser}</p>
+                                <p className="profile-bits">{setLoggedInUser()}</p>
                             </a>
                         </div>
                     </div>

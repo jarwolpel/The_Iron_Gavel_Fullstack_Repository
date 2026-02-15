@@ -4,13 +4,7 @@ import { LoginButton } from "../common/LoginPage/LoginButton";
 import type { Credentials } from "../../types/userCredentials";
 import { MenuBox } from "../common/menu-box/menuBox";
 
-export function LoginPage (
-    {
-        userDatabase,
-    }: {
-        userDatabase: Credentials[],
-    }
-) {
+export function LoginPage () {
     const [attempt, setAttempt] = useState<Credentials>(
         {username: "", password:""}
     );
