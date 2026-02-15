@@ -1,18 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Nav } from "./nav/Nav";
-import type { Credentials } from "../../../types/userCredentials";
-
+import { setLoggedInUser } from "../../../hooks/setLoggedInUser";
 export function Layout(
-    {
-        loggedInUser
-    }: {
-        loggedInUser: Credentials
-    }
 ) {
     return (
         <>
-            <Nav
-            loggedInUser={loggedInUser}/>
+            <Nav/>
                 <main>
                     <Outlet/>
                 </main>

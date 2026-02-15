@@ -1,17 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./nav.css"
-import type { Credentials } from "../../../../types/userCredentials";
+import { setLoggedInUser } from "../../../../hooks/setLoggedInUser";
 
-export function Nav(
-    {
-        loggedInUser
-    }:{
-        loggedInUser: Credentials
-    }
-) {
+export function Nav() {
     const [isVisible, setIsVisible] = useState(false);
-    const sidebarRef = useRef<HTMLDivElement>(null)
+    const sidebarRef = useRef<HTMLDivElement>(null);
+
+    // Putting logged in user into a variable
+    const loggedInUser = setLoggedInUser();
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -63,7 +60,7 @@ export function Nav(
                         <div className="item profile">
                             <a href="#">
                                 <img src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p>{loggedInUser.username}</p>
+                                <p>{loggedInUser}</p>
                             </a>
                         </div>
                     </div>
@@ -96,7 +93,7 @@ export function Nav(
                         <div className="item profile">
                             <a href="#">
                                 <img className="profile-bits" src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p className="profile-bits">{loggedInUser.username}</p>
+                                <p className="profile-bits">{loggedInUser}</p>
                             </a>
                         </div>
                     </div>
