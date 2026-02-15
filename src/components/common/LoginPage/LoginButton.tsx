@@ -1,18 +1,11 @@
 import "./Form.css";
-import type { Credentials } from "../../../types/userCredentials";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { verifyLogin } from "../../../services/LoginServices/verify";
-import { setLoggedInUser } from "../../../hooks/setLoggedInUser";
+import { logInAttempt } from "../../../hooks/setLoggedInUser";
 
 
-export function LoginButton(
-    {
-        attempt,
-    }: {
-        attempt: Credentials,
-    }
-) {
+export function LoginButton() {
     const [infoText, setInfoText] = useState<String>("");
     const navigator = useNavigate();
     return (
@@ -21,11 +14,10 @@ export function LoginButton(
                 <div>
                     <button
                     onClick={() => {
-                        if(attempt.password == "" || attempt.username == "") {
+                        if(logInAttempt().password == "" || logInAttempt().username == "") {
                             setInfoText("Please enter some credentials");
                         } else {
-                            if(verifyLogin({attempt})){
-                                setLoggedInUser(attempt.username);
+                            if(verifyLogin()){
                                 navigator("/");
                             } else {
                                 setInfoText("Unknown Credentials.");

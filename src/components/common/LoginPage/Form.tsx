@@ -1,16 +1,8 @@
 import "./Form.css";
 import "../../../App.css";
-import type { Credentials } from "../../../types/userCredentials";
+import { logInAttempt } from "../../../hooks/setLoggedInUser";
 
-export function LoginForm(
-    {
-        attempt, 
-        setAttempt
-    }: {
-        attempt: Credentials,
-        setAttempt: React.Dispatch<React.SetStateAction<Credentials>>
-        
-    }) {
+export function LoginForm() {
     return (
         <>
             <div>
@@ -21,12 +13,12 @@ export function LoginForm(
                     <div className="credential">
                         <label htmlFor="username">Username:</label>
                         <input type="text" name="username" 
-                        onChange={(e) => setAttempt({...attempt, username: e.target.value})}/>
+                        onChange={(e) => logInAttempt({username: e.target.value})}/>
                     </div>
                     <div className="password">
                         <label htmlFor="password">Password:</label>
                         <input type="text" name="password"
-                        onChange={(e) => setAttempt({...attempt, password: e.target.value})}/>
+                        onChange={(e) => logInAttempt({password: e.target.value})}/>
                     </div>
                 </fieldset>
             </form>

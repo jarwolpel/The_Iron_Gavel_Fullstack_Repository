@@ -1,15 +1,9 @@
-import type { Credentials } from "../../types/userCredentials";
 import { userDatabase } from "../../hooks/userDatabase";
+import { logInAttempt } from "../../hooks/setLoggedInUser";
 
-export function verifyLogin(
-    {
-        attempt,
-    }: {
-        attempt: Credentials, 
-    }
-): Boolean {
+export function verifyLogin(): Boolean {
     userDatabase().forEach(e => {
-        if(e.username == attempt.username && e.password == attempt.password) {
+        if(e.username == logInAttempt().username && e.password == logInAttempt().password) {
             return true;
         }
     });
