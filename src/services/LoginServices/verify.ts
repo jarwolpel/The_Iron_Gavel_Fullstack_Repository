@@ -1,4 +1,4 @@
-import { userDatabase } from "../../hooks/userDatabase";
+import { userDatabase } from "../../hooks/useUserDatabase";
 import { logInAttempt } from "../../hooks/setLoggedInUser";
 
 export function verifyLogin(): Boolean {

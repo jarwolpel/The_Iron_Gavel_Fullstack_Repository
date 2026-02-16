@@ -9,16 +9,17 @@ import type { Credentials } from "../types/userCredentials";
 
 
 
-export function userDatabase(newUser?: Credentials): Credentials[]{
+export function useUserDatabase(){
     const [userDatabase, updateUserDatabase] = useState<Credentials[]>(fetchCredentials);
-    if(newUser) {
+
+    const addUser = (newUser: Credentials) => {
         updateUserDatabase([...userDatabase, newUser]);
     }
-    
-    return userDatabase;
+
+    return {userDatabase, addUser};
 }
 
-export function createNewAccount(account?: Credentials): Credentials {
+export function useCreateAccount() {
     const [newAccount, createNewAccount] = useState<Credentials>(
         {
             username: "",
@@ -28,9 +29,9 @@ export function createNewAccount(account?: Credentials): Credentials {
         }
     );
 
-    if(account) {
-        createNewAccount({...newAccount, id: Date.now()});
+    const addAccount = (account: Credentials) => {
+        createNewAccount({...newAccount, ...account});
     }
 
-    return newAccount;
+    return {newAccount, addAccount};
 }

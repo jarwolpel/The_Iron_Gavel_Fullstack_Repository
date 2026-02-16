@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./createAccount.css";
-import { userDatabase, createNewAccount } from "../../../hooks/userDatabase";
+import { useCreateAccount, useUserDatabase }  from "../../../hooks/useUserDatabase";
 
 export function CreateAccountButton() {
     const [errorMessage, setErrorMessage] = useState<String>("");
     const navigator = useNavigate();
+
+
+    const {newAccount, addAccount} = useCreateAccount();
+    const {addUser} = useUserDatabase();
     return (
         <>
             <div>
@@ -13,13 +17,15 @@ export function CreateAccountButton() {
             </div>
             <button
             onClick={() => {
-                if(createNewAccount().username == "" || createNewAccount().username == null) {
+                if(newAccount.username == "" || newAccount.username == null) {
                     setErrorMessage("You must enter a Username");
-                } else if(createNewAccount().password == "" || createNewAccount().password == null) {
+
+                } else if(newAccount.password == "" || newAccount.password == null) {
                     setErrorMessage("You must enter a password");
+
                 } else {
-                    createNewAccount({...createNewAccount(), id: Date.now()});
-                    userDatabase(createNewAccount());
+                    addAccount({...newAccount, id: Date.now()});
+                    addUser(newAccount);
                     navigator("/accounts/login");
                 }
             }}>

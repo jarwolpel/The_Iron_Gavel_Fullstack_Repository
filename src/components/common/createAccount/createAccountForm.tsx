@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./createAccount.css";
-import { createNewAccount } from "../../../hooks/userDatabase";
+import { useCreateAccount } from "../../../hooks/useUserDatabase";
 
 
 export function CreateAccountForm() {
     const [emailVisibility, toggleEmailVisibility] = useState(false);
+
+    const { addAccount } = useCreateAccount();
     return(
         <>
             <form className="create-account-form" action="">
@@ -12,13 +14,13 @@ export function CreateAccountForm() {
                     <div>
                         <label htmlFor="username">Username:</label>
                         <input type="text" name="username"
-                        onChange={(e) => createNewAccount({username: e.target.value})}
+                        onChange={(e) => addAccount({username: e.target.value})}
                         />
                     </div>
                     <div>
                         <label htmlFor="password">Password:</label>
                         <input type="text" name="password"
-                        onChange={(e) => createNewAccount({password: e.target.value})}
+                        onChange={(e) => addAccount({password: e.target.value})}
                         />
                     </div>
                     <div>
@@ -31,7 +33,7 @@ export function CreateAccountForm() {
                         <div>
                         <label htmlFor="email">Email:</label>
                         <input type="text" name="email"
-                        onChange={(e) => createNewAccount({email: e.target.value})}
+                        onChange={(e) => addAccount({email: e.target.value})}
                         />
                     </div>
                     )}
