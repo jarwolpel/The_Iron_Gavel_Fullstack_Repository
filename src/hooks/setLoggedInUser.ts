@@ -1,25 +1,24 @@
 import { useState } from "react";
 import type { Credentials } from "../types/userCredentials";
 
-export function setLoggedInUser(name?: string): string {
+export function useSetLoggedInUser() {
     const [loggedInUser, setUser] = useState<string>("Login");
 
-    if (name) {
-        setUser(name);
-    }
+    const displayUser = (user: string) => {
+        setUser(user);
+    };
     
-    return loggedInUser;
+    return {loggedInUser, displayUser};
 }
 
-export function logInAttempt(login?: Credentials): Credentials {
+export function useLogInAttempt() {
     const [attempt, setAttempt] = useState<Credentials>(
         {username: "", password:""}
     );
-    if(login) {
-        setAttempt({...attempt, username: login.username});
-        setAttempt({...attempt, password: login.password});
-        setLoggedInUser(logInAttempt().username);
+
+    const createAttempt = (userCreds: Credentials) => {
+        setAttempt({...attempt, ...userCreds})
     }
 
-    return attempt;
+    return {attempt, createAttempt};
 }

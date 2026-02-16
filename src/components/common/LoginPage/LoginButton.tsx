@@ -2,19 +2,21 @@ import "./Form.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { verifyLogin } from "../../../services/LoginServices/verify";
-import { logInAttempt } from "../../../hooks/setLoggedInUser";
+import { useLogInAttempt } from "../../../hooks/setLoggedInUser";
 
 
 export function LoginButton() {
     const [infoText, setInfoText] = useState<String>("");
     const navigator = useNavigate();
+
+    const {attempt} = useLogInAttempt();
     return (
         <>
             <div className="login-buttons">
                 <div>
                     <button
                     onClick={() => {
-                        if(logInAttempt().password == "" || logInAttempt().username == "") {
+                        if(attempt.password == "" || attempt.username == "") {
                             setInfoText("Please enter some credentials");
                         } else {
                             if(verifyLogin()){

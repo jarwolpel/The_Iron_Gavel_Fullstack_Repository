@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./nav.css"
-import { setLoggedInUser } from "../../../../hooks/setLoggedInUser";
+import { useSetLoggedInUser } from "../../../../hooks/setLoggedInUser";
 
 export function Nav() {
     const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +26,8 @@ export function Nav() {
         }
 
     }, [isVisible])
+
+    const { loggedInUser } = useSetLoggedInUser();
 
     return(
         <nav className="roboto-heading">
@@ -57,7 +59,7 @@ export function Nav() {
                         <div className="item profile">
                             <a href="#">
                                 <img src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p>{setLoggedInUser()}</p>
+                                <p>{loggedInUser}</p>
                             </a>
                         </div>
                     </div>
@@ -90,7 +92,7 @@ export function Nav() {
                         <div className="item profile">
                             <a href="#">
                                 <img className="profile-bits" src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p className="profile-bits">{setLoggedInUser()}</p>
+                                <p className="profile-bits">{loggedInUser}</p>
                             </a>
                         </div>
                     </div>

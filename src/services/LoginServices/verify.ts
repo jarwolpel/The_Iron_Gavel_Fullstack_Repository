@@ -1,9 +1,11 @@
-import { userDatabase } from "../../hooks/useUserDatabase";
-import { logInAttempt } from "../../hooks/setLoggedInUser";
+import { useUserDatabase } from "../../hooks/useUserDatabase";
+import { useLogInAttempt } from "../../hooks/setLoggedInUser";
 
 export function verifyLogin(): Boolean {
-    userDatabase().forEach(e => {
-        if(e.username == logInAttempt().username && e.password == logInAttempt().password) {
+    const { userDatabase } = useUserDatabase();
+    const { attempt } = useLogInAttempt();
+    userDatabase.forEach(e => {
+        if(e.username == attempt.username && e.password == attempt.password) {
             return true;
         }
     });
