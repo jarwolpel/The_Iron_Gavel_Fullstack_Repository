@@ -4,6 +4,7 @@ export function useSessionUser() {
     // Login attempt cookies get/set
 
     // Return an array with 2 values, 0: The Username, and 1: the password
+    // If this is called before cookie exists, then set the returned cookie to empty
     const getLoginAttempt = () => {
         let cookie = document.cookie.split("; ").find(ele => ele.startsWith(`attempt=`))?.split("=")[1]?.split("|");
         if(!cookie) {
