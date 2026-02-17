@@ -3,35 +3,41 @@
  * up and running but for now it will handle the state for the
  * temporary user database and maybe cookie if I feel so bold
  */
-import { useState } from "react";
-import { fetchCredentials } from "../apis/UserCredsAPI/credentialsAPI";
+import { useEffect, useState } from "react";
 import type { Credentials } from "../types/userCredentials";
 
+import * as credService from "../services/credentialsService";
 
+export function useUserDatabase( dependencies: unknown[] ){
+    const [users, updateUsers] = useState<Credentials[]>([]);
+    const [error, setError] = useState<string | null>();
 
-export function useUserDatabase(){
-    const [userDatabase, updateUserDatabase] = useState<Credentials[]>(fetchCredentials);
-
-    const addUser = (newUser: Credentials) => {
-        updateUserDatabase([...userDatabase, newUser]);
-    }
-
-    return {userDatabase, addUser};
-}
-
-export function useCreateAccount() {
-    const [newAccount, createNewAccount] = useState<Credentials>(
-        {
-            username: "",
-            id: 0,
-            email: "Unset",
-            password: ""
+    const getUsers = async() => {
+        try {
+            let result = await credService.fetchCredentials();
+            updateUsers([...result]);
+        } catch(errorObject) {
+            setError(`${errorObject}`);
         }
-    );
-
-    const addAccount = (account: Credentials) => {
-        createNewAccount({...newAccount, ...account});
     }
 
-    return {newAccount, addAccount};
+    const createNewUser = async(user: Credentials) => {
+        try {
+            await credService.addUser(user);
+
+            await getUsers();
+        } catch(errorObject) {
+            setError(`${errorObject}`);
+        }
+    }
+
+    useEffect(() => {
+        getUsers();
+    }, [...dependencies]);
+
+    return {
+        users,
+        error,
+        createNewUser
+    }
 }

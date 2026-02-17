@@ -1,3 +1,6 @@
+// DEPRICATED
+// REMOVE LATER ONCE REFACTORING IS FINISHED
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./createAccount.css";
