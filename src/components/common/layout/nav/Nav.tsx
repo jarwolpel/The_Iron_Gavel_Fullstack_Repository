@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import "./nav.css"
-import { useSetLoggedInUser } from "../../../../hooks/setLoggedInUser";
+import { useSetLoggedInUser } from "../../../../hooks/useSessionUser";
 
 export function Nav() {
     const [isVisible, setIsVisible] = useState(false);

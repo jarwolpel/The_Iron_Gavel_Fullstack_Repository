@@ -1,6 +1,6 @@
 import "./Form.css";
 import "../../../App.css";
-import { useLogInAttempt } from "../../../hooks/setLoggedInUser";
+import { useLogInAttempt } from "../../../hooks/useSessionUser";
 
 export function LoginForm() {
     const {createAttempt} = useLogInAttempt();
