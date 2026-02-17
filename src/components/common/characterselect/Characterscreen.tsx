@@ -87,7 +87,9 @@ export const CharacterSelect = (
                 disabled={selected.length !== 2}
                 onClick={() => {
                     console.log("Selected Characters:", selected);
-                    navigate("/create-battle")
+                    navigate("/create-battle", {
+                        state: { selectedCharacters: selected }
+                    })
                 }}
                 >
                 Continue

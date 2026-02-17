@@ -24,6 +24,8 @@ import { fetchBattles } from "./apis/BattlesAPI/battleAPI";
 /**----------------Types----------------- */
 import type { Credentials } from "./types/userCredentials";
 import type { Battle } from "./types/battle";
+// import type { characters } from "./apis/CharacterAPI/characterData";
+import type { Character } from "./types/character";
 
 function App() {
 
@@ -36,14 +38,20 @@ function App() {
 
   const [battles, setBattles] = useState<Battle[]>(fetchBattles);
 
-  const handleBattleCreate = (name: string, description: string) => {
+  const handleBattleCreate = (
+    name: string, 
+    description: string,
+    characters: Character[]
+  ) => {
     const newBattle: Battle = {
       id: Date.now().toString(), // Simple ID generation
       name,
       description,
+      characters,
     };
     setBattles([...battles, newBattle]);
   };
+
   return (
     <Routes>
       <Route path="/" element={<Layout loggedInUser={loggedInUser}/>}>
