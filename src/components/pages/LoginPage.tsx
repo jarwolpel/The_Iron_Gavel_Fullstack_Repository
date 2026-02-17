@@ -1,5 +1,4 @@
-import { LoginForm } from "../common/LoginPage/Form";
-import { LoginButton } from "../common/LoginPage/LoginButton";
+import { LoginForm } from "../common/LoginPage/LoginForm";
 import { MenuBox } from "../common/menu-box/menuBox";
 
 export function LoginPage () {
@@ -8,7 +7,6 @@ export function LoginPage () {
             <MenuBox>
                 <div className="login-form">
                     <LoginForm/>
-                    <LoginButton/>
                 </div>
             </MenuBox>
         </>
