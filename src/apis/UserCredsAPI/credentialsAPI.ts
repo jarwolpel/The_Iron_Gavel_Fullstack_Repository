@@ -15,6 +15,10 @@ export function getUserByID(userID: number): Credentials {
     return user;
 }
 
+export function createNewUser(user: Credentials) {
+    userCredentials.push(user);
+}
+
 export async function updateUserData(user: Credentials) {
     const userIndex = userCredentials.findIndex(index => index.id === user.id);
 
