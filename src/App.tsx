@@ -1,6 +1,6 @@
 /**----------------React----------------- */
 import { Routes, Route} from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 
 /**----------------Misc----------------- */
 import './App.css'
@@ -16,31 +16,16 @@ import { CreateAccount } from "./components/pages/CreateAccount";
 import { CharacterSelect } from "./components/common/characterselect/Characterscreen";
 import { Favorites } from "./components/pages/FavoriteCharacter";
 
+/**----------------Hooks----------------- */
+import { useBattles } from "./hooks/useBattles";
 
 /**----------------APIS----------------- */
-import { fetchBattles } from "./apis/BattlesAPI/battleAPI";
 
 /**----------------Types----------------- */
-import type { Battle } from "./types/battle";
-// import type { characters } from "./apis/CharacterAPI/characterData";
-import type { Character } from "./types/character";
 
 function App() {
-  const [battles, setBattles] = useState<Battle[]>(fetchBattles);
 
-  const handleBattleCreate = (
-    name: string, 
-    description: string,
-    characters: Character[]
-  ) => {
-    const newBattle: Battle = {
-      id: Date.now().toString(), // Simple ID generation
-      name,
-      description,
-      characters,
-    };
-    setBattles([...battles, newBattle]);
-  };
+  const { battles, createBattle } = useBattles();
 
   return (
     <Routes>
@@ -53,7 +38,7 @@ function App() {
           {/* Render Create Battle screen */}
           <Route 
             path="/create-battle"
-            element={<CreateBattle onBattleCreate={handleBattleCreate} />}
+            element={<CreateBattle onBattleCreate={createBattle} />}
             >
             <Route 
               path="characterselect"
