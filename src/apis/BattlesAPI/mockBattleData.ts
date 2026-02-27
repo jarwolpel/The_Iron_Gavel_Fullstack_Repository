@@ -1,29 +1,32 @@
 import type { Battle } from "../../types/battle";
-import { characters } from "../CharacterAPI/characterData"
+import { characterRepository } from "../../repositories/characterRepository";
 
-//find the character names
-const getCharacter = (name: string) => {
-    const character = characters.find(c => c.name === name);
-    if (!character) throw new Error(`Character "${name}" not found.`);
-    return character;
-}
 export const initialBattles: Battle[] = [
     {
         id: "1",
         name: "Battle of Gazumbo",
         description: "This was a doozy!",
-        characters: [getCharacter("Master Chief"), getCharacter("Thomas Edison")]
+        characters: [
+            characterRepository.findOrThrow("Master Chief"), 
+            characterRepository.findOrThrow("Thomas Edison")
+        ]
     },
     {
         id: "2",
         name: "Azgard",
         description: "Holy smokes that wizard almost lived!",
-        characters: [getCharacter("Nikola Tesla"), getCharacter("Thomas Edison")]
+        characters: [
+            characterRepository.findOrThrow("Nikola Tesla"), 
+            characterRepository.findOrThrow("Thomas Edison")
+        ]
     },
     {
         id: "3",
         name: "Night City",
         description: "See you in the afterlife...",
-        characters: [getCharacter("Genghis Khan"), getCharacter("Master Chief")]
+        characters: [
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief")
+        ]
     }
 ];
