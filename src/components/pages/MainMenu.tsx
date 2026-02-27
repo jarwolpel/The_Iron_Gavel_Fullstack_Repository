@@ -10,9 +10,9 @@ function MainMenu() {
             <section className="StartMenu">
                 <div className="MainButtons">
                     <button
-                    onClick={() => navigate("/create-battle")}
+                    onClick={() => navigate("/test-character-select2")}
                     >
-                        Create Battle
+                        New Battle
                     </button>
                     <button
                     onClick={() => navigate("/load-battle")}

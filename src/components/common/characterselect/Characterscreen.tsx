@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { fetchCharacters } from "../../../apis/CharacterAPI/characterAPI";
 import type { Character } from "../../../types/character";
+import { useNavigate } from "react-router";
 import "./Characterscreen.css";
 
 export const CharacterSelect = (
 ) => {
+    let navigate = useNavigate();
     const [selected, setSelected] = useState<Character[]>([]);
     const [search, setSearch] = useState<string>("");
 
@@ -83,8 +85,14 @@ export const CharacterSelect = (
             <button
                 className="start-battle"
                 disabled={selected.length !== 2}
-                onClick={() => console.log("Selected Characters:", selected)}>
-                Start Battle
+                onClick={() => {
+                    console.log("Selected Characters:", selected);
+                    navigate("/create-battle", {
+                        state: { selectedCharacters: selected }
+                    })
+                }}
+                >
+                Continue
             </button>
         </div>
     );

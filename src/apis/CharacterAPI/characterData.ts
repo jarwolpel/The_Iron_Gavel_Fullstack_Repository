@@ -32,7 +32,7 @@ export const characters: Character[] = [
     },
     {   
         id: "Character-3",
-        name: "Ganghis Khan",
+        name: "Genghis Khan",
         health: 100,
         damage: 75,
         armor: 30,
