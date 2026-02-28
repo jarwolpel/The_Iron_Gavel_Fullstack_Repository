@@ -1,3 +1,22 @@
-.battle-list-item {
-    background-color: orange;
+.battle-list {
+    margin: 1rem 0;
+}
+
+.battleItem {
+    background-color: #17120d;
+    border: 0.2rem solid #453627;
+    border-radius: 2rem;
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+
+.battleItem:hover {
+    border-color: white;
+    cursor: pointer;
+}
+
+
+
+.battle-list-item p {
+    margin: 0;
 }
