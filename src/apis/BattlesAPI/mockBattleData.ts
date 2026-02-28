@@ -43,8 +43,8 @@ export const initialBattles: Battle[] = [
         name: "Kings Row",
         description: "A classic Rienhardt mirror match",
         characters: [
-            characterRepository.findOrThrow("Reinhardt"), 
-            characterRepository.findOrThrow("Reinhardt")
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief"), 
         ]
     },
     {
@@ -52,8 +52,8 @@ export const initialBattles: Battle[] = [
         name: "Numbani",
         description: "Dive vs Poke",
         characters: [
-            characterRepository.findOrThrow("Sigma"), 
-            characterRepository.findOrThrow("Winston")
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief")
         ]
     },
     {
@@ -61,8 +61,8 @@ export const initialBattles: Battle[] = [
         name: "Route 66",
         description: "A Spaghetti Western",
         characters: [
-            characterRepository.findOrThrow("Cole Cassidy"), 
-            characterRepository.findOrThrow("Elizabeth Ashe")
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief")
         ]
     },
     {
@@ -70,8 +70,8 @@ export const initialBattles: Battle[] = [
         name: "Ilios Well",
         description: "THE CAT HAS A JETPACK",
         characters: [
-            characterRepository.findOrThrow("Jetpack Cat"), 
-            characterRepository.findOrThrow("Roadhog")
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief")
         ]
     },
     {
@@ -79,8 +79,8 @@ export const initialBattles: Battle[] = [
         name: "Lijiang Tower",
         description: "The Dragon meets The Blizzard",
         characters: [
-            characterRepository.findOrThrow("Genji"), 
-            characterRepository.findOrThrow("Mei")
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief")
         ]
     },
     {
@@ -88,8 +88,8 @@ export const initialBattles: Battle[] = [
         name: "Mario's Galaxy",
         description: "yAHOOOOoooooo",
         characters: [
-            characterRepository.findOrThrow("Mario"), 
-            characterRepository.findOrThrow("Turtle")
+            characterRepository.findOrThrow("Genghis Khan"), 
+            characterRepository.findOrThrow("Master Chief")
         ]
     },
 ];
