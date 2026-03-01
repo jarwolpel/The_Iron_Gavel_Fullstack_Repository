@@ -1,9 +1,10 @@
 // CreateBattle.tsx
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { FormEvent } from "react";
 import type { Character } from "../../types/character";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MenuBox } from "../common/menu-box/menuBox";
+import { useSelectedCharacters } from "../../hooks/useSelectedCharacters";
 
 interface CreateBattleProps {
   onBattleCreate: (name: string, description: string, characters: Character[]) => void;
@@ -12,25 +13,13 @@ interface CreateBattleProps {
 function CreateBattle({ onBattleCreate }: CreateBattleProps) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [characters, setCharacters] = useState<Character[]>([]);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  // get the selected characters from the navigation state
-  useEffect(() => {
-    const selectedCharacters = location.state?.selectedCharacters
-    if (selectedCharacters && Array.isArray(selectedCharacters)) {
-      setCharacters(selectedCharacters);
-    }
-  }, [location.state])
+  const characters = useSelectedCharacters();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (name.trim() && description.trim() && characters.length === 2) {
       onBattleCreate(name, description, characters);
-      setName("");
-      setDescription("");
-      setCharacters([]);
       navigate("/battles/battle-screen"); 
     }
   };

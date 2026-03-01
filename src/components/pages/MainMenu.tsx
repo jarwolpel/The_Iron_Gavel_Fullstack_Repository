@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { useNavigate } from "react-router";
+import { MenuBox } from "../common/menu-box/menuBox";
 
 function MainMenu() {
 
@@ -7,20 +8,20 @@ function MainMenu() {
 
     return (
         <>
-            <section className="StartMenu">
+            <MenuBox>
                 <div className="MainButtons">
                     <button
-                    onClick={() => navigate("/test-character-select2")}
+                        onClick={() => navigate("/test-character-select2")}
                     >
-                        New Battle
+                            New Battle
                     </button>
                     <button
-                    onClick={() => navigate("/load-battle")}
+                        onClick={() => navigate("/load-battle")}
                     >
                         Load Battle
                     </button>
                 </div>
-            </section>
+            </MenuBox>
         </>
     )
 }
