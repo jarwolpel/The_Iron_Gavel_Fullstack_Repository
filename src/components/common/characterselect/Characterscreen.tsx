@@ -1,85 +1,71 @@
 import { useState } from "react";
-import { characters } from "../../../../data/characterList";
-import type { Character } from "../../../../data/characterList";
+import { useNavigate } from "react-router";
 import "./Characterscreen.css";
+import { useCharacterSelect } from "../../../hooks/useCharacterSelect";
+import { characterService } from "../../../services/characterService";
 
-export const CharacterSelect = () => {
-    const [selected, setSelected] = useState<Character[]>([]);
+export const CharacterSelect = (
+) => {
+    const navigate = useNavigate();
     const [search, setSearch] = useState<string>("");
+    const { selected, toggleSelect, canSelect } = useCharacterSelect();
 
-    const toggleSelect = (character: Character) => {
-        setSelected((prev) => {
-            const isSelected = prev.some(c => c.id === character.id);
-
-                if (isSelected) {
-                    return prev.filter(c => c.id !== character.id);
-                }
-
-                if (prev.length === 2) {
-                    return prev;
-                }
-
-            return [...prev, character];
-        });
-       setSearch("");
-    };
-
-    const filteredCharacters = characters.filter((character) =>
-        character.name.toLowerCase().includes(search.toLowerCase())
-    );
+    const characters = characterService.search(search)
 
     return (
     <div className="character-select">
         <h1>Select 2 Characters</h1>
-            <div className="search-form">
-                <input
-                    type="text"
-                    placeholder="Search Character list..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
-            </div>            
+        <div className="search-form">
+            <input
+                type="text"
+                placeholder="Search Character list..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
+        </div>            
         <div className="character-grid">
-        {filteredCharacters.map((character) => {
-            const isSelected = selected.some(c => c.id === character.id);
-
-            return (
+            {characters.map(character => (                
                 <button
                     key={character.id}
-                    className={`character-card ${isSelected ? "selected" : ""}`}
+                    className={`character-card ${selected.some(c => c.id === character.id) ? "selected" : ""}`}
                     onClick={() => toggleSelect(character)}
-                    disabled={!isSelected && selected.length === 2}>
+                    disabled={!canSelect(character)}>
                     {/* Character image */}
                     <img
                     src={character.image} 
                     alt={character.name} 
-                    className="character-image"/>
-                <h3>{character.name}</h3>
+                    className="character-image"
+                    />
+                    <h3>{character.name}</h3>
 
-                <ul className="character-stats">
-                    <li>
-                        <img src={character.healthimg} alt="Health" className="stat-icon" />
-                        {character.health}
-                    </li>
-                    <li>
-                        <img src={character.swordimg} alt="Damage" className="stat-icon" />
-                        {character.damage}
-                    </li>
-                    <li>
-                        <img src={character.shieldimg} alt="Armor" className="stat-icon" />
-                        {character.armor}
+                    <ul className="character-stats">
+                        <li>
+                            <img src={character.healthimg} alt="Health" className="stat-icon" />
+                            {character.health}
+                        </li>
+                        <li>
+                            <img src={character.swordimg} alt="Damage" className="stat-icon" />
+                            {character.damage}
+                        </li>
+                        <li>
+                            <img src={character.shieldimg} alt="Armor" className="stat-icon" />
+                            {character.armor}
                         </li>
                     </ul>
-                    </button>
-                );
-            })}
+                </button>
+                
+            ))}
         </div>
-
             <button
                 className="start-battle"
                 disabled={selected.length !== 2}
-                onClick={() => console.log("Selected Characters:", selected)}>
-                Start Battle
+                onClick={() => {
+                    navigate("/create-battle", {
+                        state: { selectedCharacters: selected }
+                    })
+                }}
+                >
+                Continue
             </button>
         </div>
     );

@@ -1,4 +1,5 @@
-import type { Battle } from "../../../../data/battleList"
+import type { Battle } from "../../../types/battle";
+import "./BattleSelect.css"
 
 interface BattleSelectProps {
     battle: Battle;
@@ -6,9 +7,11 @@ interface BattleSelectProps {
 
 export function BattleSelect({ battle }: BattleSelectProps) {
     return (
-        <div className="battle-list-item">
+        <div className="battleItem">
             <h3>{battle.name}</h3>
             <p>{battle.description}</p>
+            <p>{battle.characters.map(c => c.name).join(" vs ")}</p>
+            <input type="submit" value="Start Battle"></input>
         </div>
     )
 }

@@ -1,6 +1,11 @@
+/**----------------React----------------- */
 import { Routes, Route} from "react-router-dom";
+// import { useState } from "react";
+
+/**----------------Misc----------------- */
 import './App.css'
-import { useState } from "react";
+
+/**----------------Components----------------- */
 import { Layout } from './components/common/layout/layout';
 import MainMenu from "./components/pages/MainMenu";
 import BattleScreen from "./components/common/BattleScreen/BattleScreen";
@@ -8,35 +13,23 @@ import CreateBattle from "./components/pages/CreateBattle";
 import LoadBattle from "./components/pages/LoadBattle";
 import { LoginPage } from "./components/pages/LoginPage";
 import { CreateAccount } from "./components/pages/CreateAccount";
-import type { Credentials } from "./types/userCredentials";
-import { userCredentials } from "../data/userCredentials";
-import { initialBattles } from "../data/battleList";
-import type { Battle } from "../data/battleList";
 import { CharacterSelect } from "./components/common/characterselect/Characterscreen";
 import { Favorites } from "./components/pages/FavoriteCharacter";
 
+/**----------------Hooks----------------- */
+import { useBattles } from "./hooks/useBattles";
+
+/**----------------APIS----------------- */
+
+/**----------------Types----------------- */
+
 function App() {
 
-  const [loggedInUser, setLoggedInUser] = useState<Credentials>(
-    {username:"Login"} // Funny work around go weeeeeee
-  );
+  const { battles, createBattle } = useBattles();
 
-  // Creating state of user data in app.tsx so its accessible by all children.
-  const [userDatabase, updateUserDatabase] = useState<Credentials[]>(userCredentials);
-
-  const [battles, setBattles] = useState<Battle[]>(initialBattles);
-
-  const handleBattleCreate = (name: string, description: string) => {
-    const newBattle: Battle = {
-      id: Date.now().toString(), // Simple ID generation
-      name,
-      description,
-    };
-    setBattles([...battles, newBattle]);
-  };
   return (
     <Routes>
-      <Route path="/" element={<Layout loggedInUser={loggedInUser}/>}>
+      <Route path="/" element={<Layout/>}>
 
           {/* Render Main Menu Page */}
           <Route index element={<MainMenu />}
@@ -45,11 +38,11 @@ function App() {
           {/* Render Create Battle screen */}
           <Route 
             path="/create-battle"
-            element={<CreateBattle onBattleCreate={handleBattleCreate} />}
+            element={<CreateBattle onBattleCreate={createBattle} />}
             >
             <Route 
               path="characterselect"
-              element={<CharacterSelect />}
+              element={<CharacterSelect/>}
             />
           </Route>
           {/*TEST ROUT for character screen*/}
@@ -75,16 +68,10 @@ function App() {
 
           {/* Render Login Page & Create Account */}
           <Route path="/accounts/login"
-            element={<LoginPage
-            loggedInUser={loggedInUser}
-            setLoggedInUser={setLoggedInUser}
-            userDatabase={userDatabase}/>}
+            element={<LoginPage/>}
           />
           <Route path="/accounts/createAccount"
-            element={<CreateAccount
-                        userDatabase={userDatabase}
-                        updateUserDatabase={updateUserDatabase}
-                    />}
+            element={<CreateAccount/>}
           />
           {/* Favorites screen */}
           <Route 

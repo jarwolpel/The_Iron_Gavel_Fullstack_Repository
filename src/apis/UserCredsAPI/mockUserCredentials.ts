@@ -1,4 +1,4 @@
-import type { Credentials } from "../src/types/userCredentials"
+import type { Credentials } from "../../types/userCredentials"
 
 export const userCredentials: Credentials[] = [
     {

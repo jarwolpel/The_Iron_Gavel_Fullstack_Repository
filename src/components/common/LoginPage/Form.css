@@ -5,9 +5,9 @@
     border-radius: 2rem;
 }
 
-.login-button {
-    font-size: 1.5em;
-    margin: 2rem 1rem;
+.login-buttons {
+    /* font-size: 1.5em; */
+    margin-top: 2rem;
 }
 
 .login-button a:hover{
@@ -15,8 +15,9 @@
 }
 
 .create-account-button {
-    margin: 0 0 2em 0;
-    padding: 0 1em;
+    background-color: #e4071200;
+    border: solid 1px red;
+    margin-bottom: 2rem;
 }
 input {
     margin: 1rem 1rem;
