@@ -1,5 +1,7 @@
 # A brief overview of useBattles, useCharacterSelect, useSelectedCharacter, battleService, characterService, battleRepository, and characterRepository.
 
+![Iter 3 Architecture Diagram](src\docs\iter3-arch-matt.png)
+
 # -----------------------------------------------Hooks-----------------------------------------------------
 
 ## useBattles
