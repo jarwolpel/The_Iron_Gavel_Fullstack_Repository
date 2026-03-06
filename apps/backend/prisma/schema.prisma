@@ -16,19 +16,24 @@ datasource db {
 // Each property corresponds to a column in that table
 // Each instance of a model corresponds to a record in that table
 // This structure lets us "code" our db schema in TypeScript
-
 // If you change the prisma schema, use [npx prisma migrate dev --name <migration-name>]
 // to create and deploy a migration (a set of SQL commands that will update the
 // database to match the Prisma schema)
 // see https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/mental-model
 
-// Create a table called Term
-model Term {
+// Create a table called Characters
+model Characters {
   // id property, as the identifier, with a default value that autoincrements
-  id  Int @id @default(autoincrement())
+    id  Int @id @default(autoincrement())
 
   // title, definition, and isFavourite properties
-  title String
-  definition String
-  isFavourite Boolean
+    name String
+    health String
+    damage String
+    armor String
+    image String
+    healthimg String
+    shieldimg String
+    swordimg String
+    isFavourite Boolean
 }

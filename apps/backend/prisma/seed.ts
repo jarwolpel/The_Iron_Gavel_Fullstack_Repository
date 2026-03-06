@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { termSeedData } from "./seedData";
+import { characterSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
@@ -8,17 +8,17 @@ const prisma = new PrismaClient();
 // see https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding
 async function main() {
     // clear table
-    await prisma.term.deleteMany();
+    await prisma.characters.deleteMany();
 
-    // insert terms to db
-    const createManyTerms = await prisma.term.createManyAndReturn(
+    // insert characters to db
+    const createManyCharacters = await prisma.characters.createManyAndReturn(
         {
-            data: termSeedData,
+            data: characterSeedData,
             skipDuplicates: true
         }
     );
 
-    console.log(`CREATED TERMS: ${createManyTerms}`);
+    console.log(`CREATED CHARACTERS: ${createManyCharacters}`);
 };
 
 main().then(

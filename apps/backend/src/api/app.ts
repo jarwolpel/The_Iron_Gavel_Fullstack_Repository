@@ -33,7 +33,7 @@ app.get("/",  (_req, res) => {
 });
 
 // use termRoutes
-app.use("/api/v1", termRoutes);
+// app.use("/api/v1", termRoutes);
 
 //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
