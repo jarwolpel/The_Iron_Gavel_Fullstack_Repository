@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 import corsOptions from "../config/cors";
 import setupSwagger from "../config/swagger";
-import termRoutes from "./api/v1/routes/termRoutes";
+// import termRoutes from "./api/v1/routes/termRoutes";
 import errorHandler from "./api/v1/middleware/errorHandler";
 
 // initialize express application
@@ -33,7 +33,7 @@ app.get("/",  (_req, res) => {
 });
 
 // use termRoutes
-app.use("/api/v1", termRoutes);
+// app.use("/api/v1", termRoutes);
 
 //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
