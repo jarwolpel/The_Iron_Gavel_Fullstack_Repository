@@ -1,3 +1,4 @@
+// This interface interacts with the schema.prisma model Characters
 export interface Character{
     id: string;
     name: string;
