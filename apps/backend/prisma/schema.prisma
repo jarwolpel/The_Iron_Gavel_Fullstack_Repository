@@ -37,3 +37,11 @@ model Characters {
     swordimg String
     isFavourite Boolean
 }
+
+model Credentials {
+    id Int @id @default(autoincrement())
+    
+    username String
+    password String
+    email String
+}
