@@ -9,7 +9,7 @@ import setupSwagger from "../config/swagger";
 // import termRoutes from "./api/v1/routes/termRoutes";
 import errorHandler from "./api/v1/middleware/errorHandler";
 
-import credentialRoutes from "./api/v1/routes/credentialsRoutes"
+import credentialRoutes from "./api/v1/routes/credentialRoutes"
 
 // initialize express application
 const app: Express = express();

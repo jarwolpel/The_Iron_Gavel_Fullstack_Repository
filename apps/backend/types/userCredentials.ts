@@ -1,4 +1,4 @@
-export type Credential = {
+export type FrontEndCredential = {
     id?: number,
     username?: string,
     password?: string,
