@@ -6,27 +6,27 @@ import {
     //deleteCredential
 } from "../validations/credentialsValidations";
 import * as credentialController from "../controllers/credentialController";
-import { requireAuth } from "@clerk/express";
+//import { requireAuth } from "@clerk/express";
 
 
 const router: Router = express.Router();
 
 router.get(
     "/credential",
-    requireAuth(),
+    //requireAuth(),
     credentialController.getAllCredentials
 );
 
 router.get(
     "/credential/:id",
-    requireAuth(),
+    //requireAuth(),
     validateRequest(getCredentialsByIdSchema),
     credentialController.getCredentialById
 );
 
 router.post(
     "/credential",
-    requireAuth(),
+    //requireAuth(),
     validateRequest(postCredentials),
     credentialController.createNewCredential
 );
