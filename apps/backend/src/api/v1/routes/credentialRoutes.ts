@@ -3,7 +3,7 @@ import { validateRequest } from "../middleware/validate";
 import {
     getCredentialsByIdSchema,
     postCredentials,
-    deleteCredential
+    //deleteCredential
 } from "../validations/credentialsValidations";
 import * as credentialController from "../controllers/credentialController";
 import { requireAuth } from "@clerk/express";
@@ -28,21 +28,21 @@ router.post(
     "/credential",
     requireAuth(),
     validateRequest(postCredentials),
-    credentialController.addNewCredentials
+    credentialController.createNewCredential
 );
 
-router.put(
-    "/credential/:id",
-    requireAuth(),
-    validateRequest(postCredentials),
-    credentialController.updateCredentials
-);
+// router.put(
+//     "/credential/:id",
+//     requireAuth(),
+//     validateRequest(postCredentials),
+//     credentialController.updateCredentials
+// );
 
-router.get(
-    "/credential/:id",
-    requireAuth(),
-    validateRequest(deleteCredential),
-    credentialController.deleteCredential
-);
+// router.get(
+//     "/credential/:id",
+//     requireAuth(),
+//     validateRequest(deleteCredential),
+//     credentialController.deleteCredential
+// );
 
 export default router;
