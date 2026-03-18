@@ -17,7 +17,10 @@ export const postCredentials: ObjectSchema = Joi.object({
         "any.required": "Credential password is required",
         "string.empty": "Credential password cannot be blank"
     }),
-    email: Joi.string().optional(),
+    email: Joi.string().required().messages({
+        "any.required": "Credential email is required",
+        "string.empty": "Credential email cannot be blank"
+    }),
 });
 
 export const deleteCredential: ObjectSchema = Joi.object({

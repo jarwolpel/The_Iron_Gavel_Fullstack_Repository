@@ -50,7 +50,6 @@ export function LoginForm() {
                     <button
                     onClick={() => {
 
-
                         if(attempt.username == "" || attempt.password == "") {
 
                             setInfoText("Please enter some credentials");
