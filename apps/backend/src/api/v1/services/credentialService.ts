@@ -1,4 +1,3 @@
-import { Credentials } from "@prisma/client";
 import prisma from "../../../../prisma/client";
 import type { Credential } from "../types/userCredentials";
 

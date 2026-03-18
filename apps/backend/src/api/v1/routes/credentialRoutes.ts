@@ -6,7 +6,6 @@ import {
     //deleteCredential
 } from "../validations/credentialsValidations";
 import * as credentialController from "../controllers/credentialController";
-//import { requireAuth } from "@clerk/express";
 
 
 const router: Router = express.Router();

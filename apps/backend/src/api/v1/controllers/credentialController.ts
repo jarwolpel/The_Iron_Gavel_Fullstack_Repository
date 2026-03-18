@@ -6,12 +6,12 @@ import type { Credential } from "../types/userCredentials";
 
 
 export const getAllCredentials = async(
-    req: Request,
+    _req: Request,
     res: Response,
     next: NextFunction
 ): Promise<void> => {
     try {
-        const credentials: Credential[] = await credentialService.fetchAllCredentials();
+        const credentials = await credentialService.fetchAllCredentials();
 
         res.status(200).json(
             successResponse(credentials)
