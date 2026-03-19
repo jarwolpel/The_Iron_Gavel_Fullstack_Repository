@@ -16,7 +16,6 @@ export function CreateAccountForm() {
     const [newAccount, createNewAccount] = useState<Credentials>(
             {
                 username: "",
-                id: 0,
                 email: "Unset",
                 password: ""
             }
@@ -68,7 +67,7 @@ export function CreateAccountForm() {
                     setErrorMessage("You must enter a password");
 
                 } else {
-                    createNewAccount({...newAccount, id: Date.now()});
+                    createNewAccount({...newAccount});
                     createNewUser(newAccount);
                     navigator("/accounts/login");
                 }

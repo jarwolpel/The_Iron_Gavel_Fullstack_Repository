@@ -26,6 +26,7 @@
     "tsx": "^4.21.0"
   },
   "dependencies": {
+    "@clerk/express": "^1.7.20",
     "@prisma/adapter-pg": "^6.5.0",
     "@prisma/client": "^6.5.0",
     "@types/cors": "^2.8.17",

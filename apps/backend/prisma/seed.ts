@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { characterSeedData } from "./seedData";
+import { userCredentialsSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +16,15 @@ async function main() {
         {
             data: characterSeedData,
             skipDuplicates: true
+        }
+    );
+
+    await prisma.credentials.deleteMany();
+
+    const createManyCredentials = await prisma.credentials.createManyAndReturn(
+        {
+            data: userCredentialsSeedData,
+            skipDuplicates:true
         }
     );
 
