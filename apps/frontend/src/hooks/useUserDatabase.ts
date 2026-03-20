@@ -38,6 +38,7 @@ export function useUserDatabase( dependencies: unknown[] ){
     return {
         users,
         error,
-        createNewUser
+        createNewUser,
+        getUsers
     }
 }
