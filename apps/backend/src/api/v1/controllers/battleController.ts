@@ -4,7 +4,7 @@ import * as battleService from "../services/battleService";
 import { successResponse } from "../models/responseModel";
 
 /**
- * Controller methods debattleine how to handle requests and respond to requests.
+ * Controller methods define how to handle requests and respond to requests.
  * It sends the appropriate components of the request to services (if needed)
  * and responds to the request with an appropriate code/body.
  */

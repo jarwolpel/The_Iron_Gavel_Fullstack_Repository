@@ -1,6 +1,4 @@
-// Use the battle type defined in prisma/schema.prisma
 import { Battles } from "@prisma/client";
-// initialize a prisma client if not already and use in queries here
 import prisma from "../../../../prisma/client";
 
 /**
@@ -11,13 +9,11 @@ import prisma from "../../../../prisma/client";
  * More general info on Prisma: https://www.prisma.io/docs/orm/overview/prisma-in-your-stack/rest
  */
 export const fetchAllBattles = async(): Promise<Battles[]> => {
-    // get all records in the battle table
     return prisma.battles.findMany();
 }
 
 export const getBattleById = async(id: number): Promise<Battles | null> => {
     try {
-        // get first record that match the "where" object key/value pairs
         const battle = await prisma.battles.findUnique({
             where: {
                 id: id

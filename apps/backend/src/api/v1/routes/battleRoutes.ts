@@ -11,19 +11,38 @@ import * as battleController from "../controllers/battleController";
 
 const router: Router = express.Router();
 
-// define routes that Express will listen for requests to
-// define method that will be invoked when route gets a request
-router.get("/battles", battleController.getAllBattles);
-router.get("/battles/:id", battleController.getBattleById);
+router.get(
+    "/battles",
+    //requireAuth(), 
+    battleController.getAllBattles
+);
 
-// methods including data invoked validateRequest middleware
-// tested against battleSchema
-router.post("/battles", validateRequest(battleSchema), 
-    battleController.createBattle);
+router.get(
+    "/battles/:id",
+    //requireAuth(),
+    validateRequest(battleSchema), 
+    battleController.getBattleById
+);
 
-router.put("/battles/:id", validateRequest(battleSchema),
-    battleController.updateBattle);
+router.post(
+    "/battles",
+    //requireAuth(), 
+    validateRequest(battleSchema), 
+    battleController.createBattle
+);
 
-router.delete("/battles/:id", battleController.deleteBattle);
+// This won't be used until our Battle state machine is implemented
+router.put(
+    "/battles/:id",
+    //requireAuth(), 
+    validateRequest(battleSchema),
+    battleController.updateBattle
+);
+
+router.delete(
+    "/battles/:id",
+    //requireAuth(), 
+    battleController.deleteBattle
+);
 
 export default router;
