@@ -20,7 +20,7 @@ router.get(
 router.get(
     "/battles/:id",
     //requireAuth(),
-    validateRequest(battleSchema), 
+    // validateRequest(battleSchema), 
     battleController.getBattleById
 );
 
