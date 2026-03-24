@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { characterSeedData } from "./seedData";
 import { BattleSeedData } from "./seedData";
+import { userCredentialsSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
@@ -27,6 +28,14 @@ async function main() {
         }
             
     )
+    await prisma.credentials.deleteMany();
+
+    const createManyCredentials = await prisma.credentials.createManyAndReturn(
+        {
+            data: userCredentialsSeedData,
+            skipDuplicates:true
+        }
+    );
 
     console.log(`CREATED CHARACTERS: ${createManyCharacters}`);
     console.log(`CREATED BATTLES: ${createManyBattles}`)

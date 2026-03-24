@@ -2,11 +2,14 @@ import express, {Express} from "express";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
+//import { clerkMiddleware } from "@clerk/express";
 
 import corsOptions from "../config/cors";
 import setupSwagger from "../config/swagger";
 import battleRoutes from "./api/v1/routes/battleRoutes";
 import errorHandler from "./api/v1/middleware/errorHandler";
+
+import credentialRoutes from "./api/v1/routes/credentialRoutes"
 
 // initialize express application
 const app: Express = express();
@@ -18,6 +21,9 @@ app.use(morgan("combined"));
 
 // allow express to parse json
 app.use(express.json());
+
+
+//app.use(clerkMiddleware());
 
 // add Cross-Origin Resource Sharing middleware
 // This will refuse requests from origins that do not fulfill corsOptions requirements
@@ -35,6 +41,7 @@ app.get("/",  (_req, res) => {
 // use termRoutes
 app.use("/api/v1", battleRoutes);
 
+app.use("/api/v1", credentialRoutes);
 //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
 app.use(errorHandler); 

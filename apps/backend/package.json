@@ -6,7 +6,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "start": "ts-node src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "vercel-build": "prisma migrate deploy && prisma db seed && npm run build",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +33,7 @@
     "tsx": "^4.21.0"
   },
   "dependencies": {
+    "@clerk/express": "^1.7.20",
     "@prisma/adapter-pg": "^6.5.0",
     "@prisma/client": "^6.5.0",
     "@types/cors": "^2.8.17",

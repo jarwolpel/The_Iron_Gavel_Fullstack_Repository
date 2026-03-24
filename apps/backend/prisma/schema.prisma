@@ -48,3 +48,11 @@ model Battles {
     description String
     characters String[]
 }
+
+model Credentials {
+    id Int @id @default(autoincrement())
+    
+    username String
+    password String
+    email String
+}
