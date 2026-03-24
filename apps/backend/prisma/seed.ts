@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { characterSeedData } from "./seedData";
+import { BattleSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
@@ -9,8 +10,9 @@ const prisma = new PrismaClient();
 async function main() {
     // clear table
     await prisma.characters.deleteMany();
+    await prisma.battles.deleteMany();
 
-    // insert characters to db
+    // insert seed data to db
     const createManyCharacters = await prisma.characters.createManyAndReturn(
         {
             data: characterSeedData,
@@ -18,7 +20,16 @@ async function main() {
         }
     );
 
+    const createManyBattles = await prisma.battles.createManyAndReturn(
+        {
+            data: BattleSeedData,
+            skipDuplicates: true
+        }
+            
+    )
+
     console.log(`CREATED CHARACTERS: ${createManyCharacters}`);
+    console.log(`CREATED BATTLES: ${createManyBattles}`)
 };
 
 main().then(

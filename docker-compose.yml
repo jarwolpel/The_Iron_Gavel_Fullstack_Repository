@@ -3,7 +3,7 @@
 services:
   postgres:
     image: postgres:16
-    container_name: fsd-iron-gavel
+    container_name: fsd-iron-gavel-project
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
