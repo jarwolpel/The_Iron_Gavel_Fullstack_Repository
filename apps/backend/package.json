@@ -6,9 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/server.ts",
     "build": "tsc",
-    // run all necessary build commands when deployed
     "vercel-build": "prisma migrate deploy && prisma db seed && npm run build",
-    // Have prisma generate its client after deployment
     "postinstall": "prisma generate"
   },
   "keywords": [],
