@@ -13,10 +13,8 @@ export const getCharacterByIdSchema: ObjectSchema = Joi.object({
 });
 
 // Validate GET /characters/search?q=<query>
-export const searchCharactersSchema: ObjectSchema = Joi.object({
-    query: Joi.object({
-        q: Joi.string().allow("").optional().messages({
-            "string.base": "Search query must be a string",
-        }),
+export const searchCharactersSchema = Joi.object({
+    q: Joi.string().allow("").optional().messages({
+        "string.base": "Search query must be a string",
     }),
 });
