@@ -1,11 +1,11 @@
 import type { Battle } from "../../types/battle";
-import { initialBattles } from "./mockBattleData";
+// import { initialBattles } from "./mockBattleData";
 
 type BattlesResponseJSON = {message: String, data: Battle[]};
 type BattleResponseJSON = {message: String, data: Battle};
 
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
-const BATTLE_ENDPOINT = "/credential";
+const BATTLE_ENDPOINT = "/battles";
 
 export async function fetchBattles(): Promise<Battle[]> {
     const battleResponse: Response = await fetch(
@@ -24,7 +24,7 @@ export async function getBattleByID(battleID: string): Promise<Battle> {
     // const battle = initialBattles.find(id => id.id === battleID);
     const battleResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}/${battleID}`
-    )
+    );
 
     if(!battleResponse.ok) {
         throw new Error(`Failed to find battle with ID ${battleID}`);
@@ -34,7 +34,7 @@ export async function getBattleByID(battleID: string): Promise<Battle> {
     return json.data;
 }
 
-export async function createBattleData(battle: Battle) {
+export async function createBattleData(battle: Omit<Battle, "id">): Promise<Battle> {
     const createResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}`,
         {
@@ -42,7 +42,7 @@ export async function createBattleData(battle: Battle) {
             body: JSON.stringify({...battle}),
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
         }     
     );
 
@@ -54,43 +54,56 @@ export async function createBattleData(battle: Battle) {
     return json.data;
 }
 
-export async function updateBattleData(battle: Battle) {
-    const createResponse: Response = await fetch(
+export async function updateBattleData(battle: Battle): Promise<Battle> {
+    const updateResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}/${battle.id}`,
         {
             method: "PUT",
             body: JSON.stringify({...battle}),
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
         }     
     );
 
-    if(!createResponse.ok) {
+    if(!updateResponse.ok) {
         throw new Error(`Failed to update battle with id ${battle.id}`);
     }
 
-    const json: BattleResponseJSON = await createResponse.json();
+    const json: BattleResponseJSON = await updateResponse.json();
     return json.data;
 }
 
-export async function updateCharacterData(battle: Battle) {
-    const battleIndex = initialBattles.findIndex(index => index.id === battle.id);
+export async function deleteBattle(battleID: string): Promise<void> {
+    const deleteResponse: Response = await fetch(
+        `${BASE_URL}${BATTLE_ENDPOINT}/${battleID}`,
+        { method: "DELETE" }
+    );
 
-    if(battleIndex === -1) {
-        throw new Error(`Failed to update battle data with id: ${battle.id}`);
+    if(!deleteResponse.ok) {
+        throw new Error(`Failed to delete battle with id ${battleID}`);
     }
-
-    initialBattles[battleIndex] = battle;
-    return initialBattles[battleIndex];
 }
 
-export async function deleteCharacter(battleID: string) {
-    const battleIndex = initialBattles.findIndex(index => index.id === battleID);
+// unused functions, will save in case it breaks things
+// export async function updateCharacterData(battle: Battle): Promise<Battle> {
+//     const updateResponse: Response = await fetch()
+//     const battleIndex = initialBattles.findIndex(index => index.id === battle.id);
 
-    if(battleIndex === -1) {
-        throw new Error(`Failed to find battle with id: ${battleID}`);
-    }
+//     if(battleIndex === -1) {
+//         throw new Error(`Failed to update battle data with id: ${battle.id}`);
+//     }
 
-    delete initialBattles[battleIndex];
-}
+//     initialBattles[battleIndex] = battle;
+//     return initialBattles[battleIndex];
+// }
+
+// export async function deleteCharacter(battleID: string) {
+//     const battleIndex = initialBattles.findIndex(index => index.id === battleID);
+
+//     if(battleIndex === -1) {
+//         throw new Error(`Failed to find battle with id: ${battleID}`);
+//     }
+
+//     delete initialBattles[battleIndex];
+// }
