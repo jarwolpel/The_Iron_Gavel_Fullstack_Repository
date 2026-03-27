@@ -8,16 +8,16 @@ import {
     deleteBattle, 
 } from "../apis/BattlesAPI/battleAPI";
 
-import type { Battle } from "../types/battle";
+import type { BattleDTO } from "../types/battle";
  
 // let battleStore: Battle[] = [...initialBattles]
 
 export const battleRepository = {
-    async getAll(): Promise <Battle[]> {
+    async getAll(): Promise <BattleDTO[]> {
             return fetchBattles();
         },
 
-    async findByID(id: string): Promise<Battle | undefined> {
+    async findByID(id: string): Promise<BattleDTO | undefined> {
         try {
             return await getBattleByID(id)
         } catch {
@@ -25,11 +25,11 @@ export const battleRepository = {
         }
     },
 
-    async save(battle: Omit<Battle, "id">): Promise<Battle> {
+    async save(battle: Omit<BattleDTO, "id">): Promise<BattleDTO> {
         return createBattleData(battle);
     },
 
-    async update(battle: Battle): Promise<Battle> {
+    async update(battle: BattleDTO): Promise<BattleDTO> {
         return updateBattleData(battle);
     },
     

@@ -1,13 +1,13 @@
-import type { Battle } from "../../types/battle";
+import type { BattleDTO } from "../../types/battle";
 // import { initialBattles } from "./mockBattleData";
 
-type BattlesResponseJSON = {message: String, data: Battle[]};
-type BattleResponseJSON = {message: String, data: Battle};
+type BattlesResponseJSON = {message: String, data: BattleDTO[]};
+type BattleResponseJSON = {message: String, data: BattleDTO};
 
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const BATTLE_ENDPOINT = "/battles";
 
-export async function fetchBattles(): Promise<Battle[]> {
+export async function fetchBattles(): Promise<BattleDTO[]> {
     const battleResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}`
     );
@@ -20,7 +20,7 @@ export async function fetchBattles(): Promise<Battle[]> {
     return json.data;
 }
 
-export async function getBattleByID(battleID: string): Promise<Battle> {
+export async function getBattleByID(battleID: string): Promise<BattleDTO> {
     // const battle = initialBattles.find(id => id.id === battleID);
     const battleResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}/${battleID}`
@@ -34,7 +34,7 @@ export async function getBattleByID(battleID: string): Promise<Battle> {
     return json.data;
 }
 
-export async function createBattleData(battle: Omit<Battle, "id">): Promise<Battle> {
+export async function createBattleData(battle: Omit<BattleDTO, "id">): Promise<BattleDTO> {
     const createResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}`,
         {
@@ -54,7 +54,7 @@ export async function createBattleData(battle: Omit<Battle, "id">): Promise<Batt
     return json.data;
 }
 
-export async function updateBattleData(battle: Battle): Promise<Battle> {
+export async function updateBattleData(battle: BattleDTO): Promise<BattleDTO> {
     const updateResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}/${battle.id}`,
         {
