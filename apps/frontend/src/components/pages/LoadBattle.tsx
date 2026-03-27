@@ -31,7 +31,7 @@ function LoadBattle() {
           <h1>Battle History</h1>
 
           {loading && <p>Loading battles...</p>}
-          {error && <p style={{color: "red"}}>Error: {error}</p>}
+          {error && <p style={{color: "red"}}>Error: {error}. Try re-seeding the db</p>}
           {!loading && !error && battles.length === 0 && (
             <p>No battles found</p>
           )}
