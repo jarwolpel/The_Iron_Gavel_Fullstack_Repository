@@ -7,20 +7,31 @@ import { MenuBox } from "../common/menu-box/menuBox";
 import { useSelectedCharacters } from "../../hooks/useSelectedCharacters";
 
 interface CreateBattleProps {
-  onBattleCreate: (name: string, description: string, characters: Character[]) => void;
+  onBattleCreate: (name: string, description: string, characters: Character[]) => Promise<void>;
 }
 
 function CreateBattle({ onBattleCreate }: CreateBattleProps) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const characters = useSelectedCharacters();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (name.trim() && description.trim() && characters.length === 2) {
-      onBattleCreate(name, description, characters);
+    if (!name.trim() || !description.trim() || characters.length !== 2) return;
+     
+    setSubmitting(true);
+    setError(null);
+    
+    try {
+      await onBattleCreate(name, description, characters); 
       navigate("/battles/battle-screen"); 
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to create battle");
+    } finally {
+      setSubmitting(false)
     }
   };
 
@@ -57,7 +68,12 @@ function CreateBattle({ onBattleCreate }: CreateBattleProps) {
               }
             </p>
           </div>
-          <input type="submit" value="Start Battle" />
+          {error && <p style={{ color: "red" }}>Error: {error}</p>}
+          <input 
+            type="submit" 
+            value={submitting ? "Creating..." : "Start Battle"}
+            disabled={submitting || characters.length !== 2} 
+          />
         </form>
       </div>
     </MenuBox>
