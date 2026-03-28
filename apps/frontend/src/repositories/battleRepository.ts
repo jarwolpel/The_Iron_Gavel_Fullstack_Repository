@@ -1,25 +1,39 @@
 //This module retrieves battle data from the database 
-import { initialBattles } from "../apis/BattlesAPI/mockBattleData";
-import type { Battle } from "../types/battle";
+// import { initialBattles } from "../apis/BattlesAPI/mockBattleData";
+import {
+    fetchBattles,
+    createBattleData,
+    getBattleByID,
+    updateBattleData,
+    deleteBattle, 
+} from "../apis/BattlesAPI/battleAPI";
 
-// saving to memory, maybe will be changed to Firebase later 
-let battleStore: Battle[] = [...initialBattles]
+import type { BattleDTO } from "../types/battle";
+ 
+// let battleStore: Battle[] = [...initialBattles]
 
 export const battleRepository = {
-    getAll(): Battle[] {
-            return battleStore;
+    async getAll(): Promise <BattleDTO[]> {
+            return fetchBattles();
         },
 
-    findById(id: string): Battle | undefined {
-        return battleStore.find(b => b.id === id);
+    async findByID(id: string): Promise<BattleDTO | undefined> {
+        try {
+            return await getBattleByID(id)
+        } catch {
+            return undefined;
+        }
     },
 
-    save(battle: Battle): Battle {
-        battleStore = [...battleStore, battle];
-        return battle;
+    async save(battle: Omit<BattleDTO, "id">): Promise<BattleDTO> {
+        return createBattleData(battle);
+    },
+
+    async update(battle: BattleDTO): Promise<BattleDTO> {
+        return updateBattleData(battle);
     },
     
-    delete(id: string): void {
-        battleStore = battleStore.filter(b => b.id !== id);
-    }
+    async delete(id: string): Promise<void> {
+        return deleteBattle(id);
+    },
 };
