@@ -1,11 +1,10 @@
 //This module handles validation for battles
 import { battleRepository } from "../repositories/battleRepository";
 import type { Battle } from "../types/battle";
-import type { Character } from "../types/character";
-import * as battleAPI from "../apis/BattlesAPI/battleAPI" 
+import type { Character } from "../types/character"; 
 
 export const battleService = {
-    getAll(): Battle[] {
+    getAll(): BattleDTO[] {
         return battleRepository.getAll();
     },
 
