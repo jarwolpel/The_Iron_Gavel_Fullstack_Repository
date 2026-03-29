@@ -3,7 +3,7 @@
    
    "rewrites": [
        {
-           // send requests to backend root to /api directory when using the vercel domain
+
            "source": "/(.*)",
            "destination": "/api" 
        }
