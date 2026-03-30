@@ -41,3 +41,17 @@ export const searchCharacters = async (query: string): Promise<Characters[]> => 
         throw new Error(`Failed to search characters with query "${query}"`);
     }
 };
+
+// Toggle the favorite status of a character
+export const toggleFavorite = async (id: number, isFavourite: boolean): Promise<Characters> => {
+  try {
+    // Update the character's favorite status in the database
+    const updatedCharacter = await prisma.characters.update({
+      where: { id },
+      data: { isFavourite }, // Set the new favorite status
+    });
+    return updatedCharacter;
+  } catch (error) {
+    throw new Error(`Failed to update favorite status for character with id ${id}`);
+  }
+};

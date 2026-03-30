@@ -23,4 +23,7 @@ router.get(
     characterController.getAllCharacters
 );
 
+// PATCH route to toggle the favorite status of a character
+router.patch("/:id/favorite", characterController.toggleFavorite);
+
 export default router;
