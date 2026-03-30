@@ -1,10 +1,9 @@
 import "./Form.css";
 import "../../../App.css";
-import { useSessionUser } from "../../../hooks/useSessionUser";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useUserDatabase } from "../../../hooks/useUserDatabase";
 import type { Credentials } from "../../../types/userCredentials";
+import { useLoginAttempt } from "../../../hooks/useLoginAttempt";
+import { useNavigate } from "react-router-dom";
 
 export function LoginForm() {
     const [infoText, setInfoText] = useState<String>("");
@@ -12,11 +11,10 @@ export function LoginForm() {
         username: "",
         password: ""
     });
+
     const navigator = useNavigate();
 
-    const { users } = useUserDatabase([]);
-    const { setSessionUser } = useSessionUser();
-
+    const { attemptLogin, error} = useLoginAttempt();
 
     return (
         <>
@@ -49,23 +47,9 @@ export function LoginForm() {
                 <div>
                     <button
                     onClick={() => {
+                        attemptLogin(attempt);
 
-                        if(attempt.username == "" || attempt.password == "") {
-
-                            setInfoText("Please enter some credentials");
-
-                        } else {
-                            users.forEach(e => {
-                                if(e.username == attempt.username && e.password == attempt.password) {
-                                    
-                                    setSessionUser(attempt.username);
-                                    navigator("/");
-
-                                } else {
-                                    setInfoText("Unknown Credentials");
-                                }
-                            });
-                        }
+                        setInfoText(error);
                     }}>Log In</button>
                 </div>
                 <div>

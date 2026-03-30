@@ -1,0 +1,24 @@
+{
+   "relatedProjects": ["prj_FV1PE6UorqJp9uFoPgXUxnds5JIV"],
+   
+    "builds": [
+        {
+            "src": "dist/index.js",
+            "use": "@vercel/node"
+        }
+    ],
+
+   "rewrites": [
+       {
+
+           "source": "/(.*)",
+           "destination": "/api" 
+       }
+   ],
+   "git": {
+     "deploymentEnabled": {
+         "*": false,
+         "main": true
+    }
+ }
+}

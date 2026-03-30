@@ -25,7 +25,7 @@ import { useBattles } from "./hooks/useBattles";
 
 function App() {
 
-  const { battles, createBattle } = useBattles();
+  const { createBattle } = useBattles();
 
   return (
     <Routes>
@@ -54,7 +54,7 @@ function App() {
           {/* Render Load Battle screen */}
           <Route 
             path="/load-battle"
-            element={<LoadBattle battles={battles}/>}
+            element={<LoadBattle />}
             >
           </Route>
 
