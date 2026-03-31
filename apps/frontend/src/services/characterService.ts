@@ -2,27 +2,38 @@
 //import { characterRepository } from "../repositories/characterRepository";
 import type { Character } from "../types/character";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL + "/api/v1";
+
 export const characterService = {
+
     async getAll(): Promise<Character[]> {
-        const response = await fetch(`/api/characters`);
+        const response = await fetch(`${BASE_URL}/characters`);
         const json = await response.json();
-        return json.data || [];
+        return Array.isArray(json) ? json : json.data || [];
     },
 
     async search(query: string): Promise<Character[]> {
-        if (!query.trim()) return []; // return empty array if query is blank
-
-        const response = await fetch(`/api/characters/search?q=${query}`);
+        if (!query.trim()) return this.getAll(); // fetch all if search is empty
+        const response = await fetch(`${BASE_URL}/characters/search?q=${query}`);
         const json = await response.json();
-        return json.data || [];
+        return Array.isArray(json) ? json : json.data || [];
     },
 
     async getByName(name: string): Promise<Character | null> {
         if (!name.trim()) return null;
-
-        const response = await fetch(`/api/characters?name=${name}`);
+        const response = await fetch(`${BASE_URL}/characters?name=${name}`);
         const json = await response.json();
-        return json.data || null;
-    }
-};
+        const characters = Array.isArray(json) ? json : json.data || [];
+        return characters[0] || null;
+    },
 
+    async toggleFavorite(id: string, isFavorite: boolean): Promise<Character> {
+        const response = await fetch(`${BASE_URL}/characters/${id}/favorite`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ isFavorite }),
+        });
+        const json = await response.json();
+        return Array.isArray(json) ? json[0] : json.data || json;
+    },
+};

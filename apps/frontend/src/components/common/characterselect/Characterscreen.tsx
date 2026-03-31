@@ -14,8 +14,13 @@ export const CharacterSelect = (
 
     useEffect(() => {
         const fetchCharacters = async () => {
-            const result = await characterService.search(search);
-            setCharacters(result);
+            try {
+                const result = await characterService.search(search); // search handles empty query
+                setCharacters(result);
+            } catch (error) {
+                console.error("Failed to fetch characters:", error);
+                setCharacters([]); // fallback if request fails
+            }
         };
 
         fetchCharacters();
