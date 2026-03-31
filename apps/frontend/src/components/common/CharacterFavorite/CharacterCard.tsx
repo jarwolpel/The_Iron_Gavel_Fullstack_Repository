@@ -1,6 +1,9 @@
 import type { Character } from "../../../types/character";
 import CheckmarkIcon  from "../../../assets/icons/Checkmark.svg";
 import BoxIcon  from "../../../assets/icons/box.svg";
+import HealthIcon from "../../../assets/icons/health.png";
+import SwordIcon from "../../../assets/icons/sword.png";
+import ShieldIcon from "../../../assets/icons/shield.png";
 import "./CharacterCard.css";
 
 export function CharacterCard({
@@ -36,15 +39,15 @@ export function CharacterCard({
                 <div className="character-details">
                     <p>
                         <strong>Health:</strong> {character.health}
-                        <img src={character.healthimg} alt="Health" width={20} />
+                        <img src={HealthIcon} alt="Health" width={20} />
                     </p>
                     <p>
                         <strong>Damage:</strong> {character.damage}
-                        <img src={character.swordimg} alt="Damage" width={20} />
+                        <img src={SwordIcon} alt="Damage" width={20} />
                     </p>
                     <p>
                         <strong>Armor:</strong> {character.armor}
-                        <img src={character.shieldimg} alt="Armor" width={20} />
+                        <img src={ShieldIcon} alt="Armor" width={20} />
                     </p>
                 </div>
             ) : null}

@@ -4,6 +4,9 @@ import "./Characterscreen.css";
 import { useCharacterSelect } from "../../../hooks/useCharacterSelect";
 import { characterService } from "../../../services/characterService";
 import type { Character } from "../../../types/character";
+import HealthIcon from "../../../assets/icons/health.png";
+import SwordIcon from "../../../assets/icons/sword.png";
+import ShieldIcon from "../../../assets/icons/shield.png";
 
 export const CharacterSelect = (
 ) => {
@@ -15,11 +18,11 @@ export const CharacterSelect = (
     useEffect(() => {
         const fetchCharacters = async () => {
             try {
-                const result = await characterService.search(search); // search handles empty query
+                const result = await characterService.search(search);
                 setCharacters(result);
             } catch (error) {
-                console.error("Failed to fetch characters:", error);
-                setCharacters([]); // fallback if request fails
+                console.error("Error fetching characters:", error);
+                setCharacters([]);
             }
         };
 
@@ -54,15 +57,15 @@ export const CharacterSelect = (
 
                     <ul className="character-stats">
                         <li>
-                            <img src={character.healthimg} alt="Health" className="stat-icon" />
+                            <img src={HealthIcon} alt="Health" className="stat-icon" />
                             {character.health}
                         </li>
                         <li>
-                            <img src={character.swordimg} alt="Damage" className="stat-icon" />
+                            <img src={SwordIcon} alt="Damage" className="stat-icon" />
                             {character.damage}
                         </li>
                         <li>
-                            <img src={character.shieldimg} alt="Armor" className="stat-icon" />
+                            <img src={ShieldIcon} alt="Armor" className="stat-icon" />
                             {character.armor}
                         </li>
                     </ul>
