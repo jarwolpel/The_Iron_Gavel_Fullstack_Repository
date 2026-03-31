@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Character } from "../../../types/character";
 import { CharacterCard } from "./CharacterCard";
+import { characterService } from "../../../services/characterService";
 import "./CharacterdListDisplay.css";
 
 export function CharacterListDisplay({
@@ -13,32 +14,31 @@ export function CharacterListDisplay({
     const [expandedId, setExpandedId] = useState<string | null>(null);
 
     // Handle adding/removing characters to/from favorites
-    const handleCharacterFavoriteClick = (characterClicked: Character): void => {
-        updateCharacters((oldCharacterState) =>
-            oldCharacterState.map((character) => {
-                if (character.id === characterClicked.id) {
-                    let newFavorite = !character.isFavorite;
-                    return { ...character, isFavorite: newFavorite };
-                } else {
-                    return character;
-                }
-            })
-        );
+    const handleCharacterFavoriteClick = async (characterClicked: Character): Promise<void> => {
+        try {
+            const updatedCharacter = await characterService.toggleFavorite(
+                characterClicked.id,
+                !characterClicked.isFavorite
+            );
+
+            updateCharacters((old) =>
+                old.map((c) => (c.id === updatedCharacter.id ? updatedCharacter : c))
+            );
+        } catch (error) {
+            console.error("Failed to toggle favorite:", error);
+        }
     };
 
     const characterListItems = characters.map((character) => {
         return (
             <CharacterCard
-                character={character}
-                // Check if this character's ID matches the expandedId
-                isExpanded={character.id === expandedId}
-                onTitleClick={() => {
-                    character.id !== expandedId ? setExpandedId(character.id) : setExpandedId(null);
-                }}
-                onSaveClick={() => {
-                    handleCharacterFavoriteClick(character);
-                }}
                 key={character.id}
+                character={character}
+                isExpanded={character.id === expandedId}
+                onTitleClick={() =>
+                    setExpandedId(character.id !== expandedId ? character.id : null)
+                }
+                onSaveClick={() => handleCharacterFavoriteClick(character)}
             />
         );
     });

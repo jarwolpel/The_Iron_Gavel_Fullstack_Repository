@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import "./Characterscreen.css";
 import { useCharacterSelect } from "../../../hooks/useCharacterSelect";
 import { characterService } from "../../../services/characterService";
+import type { Character } from "../../../types/character";
 
 export const CharacterSelect = (
 ) => {
     const navigate = useNavigate();
     const [search, setSearch] = useState<string>("");
+    const [characters, setCharacters] = useState<Character[]>([]);
     const { selected, toggleSelect, canSelect } = useCharacterSelect();
 
-    const characters = characterService.search(search)
+    useEffect(() => {
+        const fetchCharacters = async () => {
+            try {
+                const result = await characterService.search(search); // search handles empty query
+                setCharacters(result);
+            } catch (error) {
+                console.error("Failed to fetch characters:", error);
+                setCharacters([]); // fallback if request fails
+            }
+        };
+
+        fetchCharacters();
+    }, [search]);
 
     return (
     <div className="character-select">
