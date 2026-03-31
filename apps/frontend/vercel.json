@@ -1,10 +1,15 @@
 {
-   "relatedProjects": ["prj_3wSeEDKqdC8kYCcFjJZjVRSptQW8"],
-
-   "git": {
-     "deploymentEnabled": {
-         "*": false,
-         "main": true
-     }
- }
+  "relatedProjects": [
+    "prj_3wSeEDKqdC8kYCcFjJZjVRSptQW8"
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "git": {
+    "deploymentEnabled": {
+      "*": false,
+      "main": true
+    }
+  }
 }
