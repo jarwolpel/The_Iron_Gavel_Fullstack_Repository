@@ -11,6 +11,8 @@ import errorHandler from "./api/v1/middleware/errorHandler";
 
 import credentialRoutes from "./api/v1/routes/credentialRoutes"
 
+import characterRoutes from "./api/v1/routes/characterRoutes"
+
 // initialize express application
 const app: Express = express();
 
@@ -44,6 +46,12 @@ app.use("/api/v1", battleRoutes);
 app.use("/api/v1", credentialRoutes);
 //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
+
+app.use("/api/v1/characters", characterRoutes);
+
+
+
+
 app.use(errorHandler); 
 
 export default app;
