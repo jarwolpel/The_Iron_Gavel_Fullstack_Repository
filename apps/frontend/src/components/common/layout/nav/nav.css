@@ -158,10 +158,6 @@ nav li:first-child {
         font-size: 0.8rem;
     }
 
-    input {
-        margin: 1em 0.5em;
-    }
-
     .button-class {
         padding: 0.5rem 0.65rem;
         margin: 0.25rem 0.125rem;

@@ -7,6 +7,7 @@ import type { Character } from "../../../types/character";
 import HealthIcon from "../../../assets/icons/health.png";
 import SwordIcon from "../../../assets/icons/sword.png";
 import ShieldIcon from "../../../assets/icons/shield.png";
+import { MenuBox } from "../menu-box/menuBox";
 
 export const CharacterSelect = (
 ) => {
@@ -30,60 +31,68 @@ export const CharacterSelect = (
     }, [search]);
 
     return (
-    <div className="character-select">
-        <h1>Select 2 Characters</h1>
-        <div className="search-form">
-            <input
-                type="text"
-                placeholder="Search Character list..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-        </div>            
-        <div className="character-grid">
-            {characters.map(character => (                
-                <button
-                    key={character.id}
-                    className={`character-card ${selected.some(c => c.id === character.id) ? "selected" : ""}`}
-                    onClick={() => toggleSelect(character)}
-                    disabled={!canSelect(character)}>
-                    {/* Character image */}
-                    <img
-                    src={character.image} 
-                    alt={character.name} 
-                    className="character-image"
-                    />
-                    <h3>{character.name}</h3>
-
-                    <ul className="character-stats">
-                        <li>
-                            <img src={HealthIcon} alt="Health" className="stat-icon" />
-                            {character.health}
-                        </li>
-                        <li>
-                            <img src={SwordIcon} alt="Damage" className="stat-icon" />
-                            {character.damage}
-                        </li>
-                        <li>
-                            <img src={ShieldIcon} alt="Armor" className="stat-icon" />
-                            {character.armor}
-                        </li>
-                    </ul>
-                </button>
-                
-            ))}
-        </div>
-            <button
-                className="start-battle"
-                disabled={selected.length !== 2}
-                onClick={() => {
-                    navigate("/create-battle", {
-                        state: { selectedCharacters: selected }
-                    })
-                }}
+        <MenuBox>
+            <div 
+            className="character-select"
+            >
+                <h1>Select 2 Characters</h1>
+                <div 
+                className="search-form"
                 >
-                Continue
-            </button>
-        </div>
+                    <input
+                        type="text"
+                        placeholder="Search Character list..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                </div>            
+                <div 
+                className="character-grid"
+                >
+                    {characters.map(character => (                
+                        <button
+                            key={character.id}
+                            className={`character-card ${selected.some(c => c.id === character.id) ? "selected" : ""}`}
+                            onClick={() => toggleSelect(character)}
+                            disabled={!canSelect(character)}>
+                            {/* Character image */}
+                            <img
+                            src={character.image} 
+                            alt={character.name} 
+                            className="character-image"
+                            />
+                            <h3>{character.name}</h3>
+
+                            <ul className="character-stats">
+                                <li>
+                                    <img src={HealthIcon} alt="Health" className="stat-icon" />
+                                    {character.health}
+                                </li>
+                                <li>
+                                    <img src={SwordIcon} alt="Damage" className="stat-icon" />
+                                    {character.damage}
+                                </li>
+                                <li>
+                                    <img src={ShieldIcon} alt="Armor" className="stat-icon" />
+                                    {character.armor}
+                                </li>
+                            </ul>
+                        </button>
+                        
+                    ))}
+                </div>
+                    <button
+                        className="start-battle"
+                        disabled={selected.length !== 2}
+                        onClick={() => {
+                            navigate("/create-battle", {
+                                state: { selectedCharacters: selected }
+                            })
+                        }}
+                        >
+                        Continue
+                    </button>
+                </div>
+        </MenuBox>
     );
 };
