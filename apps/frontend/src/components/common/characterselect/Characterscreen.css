@@ -15,7 +15,7 @@
 .character-card.selected {
   border-color: #28a745;
   background-color: #2035ad;
-  border-width: 0.25rem;
+  border-width: 0.15rem;
 }
 
 .character-card h3 {

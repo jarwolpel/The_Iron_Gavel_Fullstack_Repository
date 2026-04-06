@@ -1,6 +1,6 @@
 .character-card {
   max-width: 100%;      
-  border: 1px solid #cccccc; 
+  border: 0.15rem solid #cccccc; 
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
