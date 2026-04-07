@@ -77,7 +77,7 @@ label {
 }
 
 .MainButtons button {
-  height: 30%;
+  min-height: 30%;
   min-width: 45%;
 }
 
