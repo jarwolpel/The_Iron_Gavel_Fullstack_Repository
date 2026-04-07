@@ -7,7 +7,7 @@
         "headers": [
             {
                 "key":"Access-Control-Allow-Origin",
-                "value":"the-iron-gavel-fullstack-repository-lliexbdvh.vercel.app"
+                "value":"https://the-iron-gavel-fullstack-repository-lliexbdvh.vercel.app/"
             }
         ]
     }
