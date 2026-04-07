@@ -1,4 +1,12 @@
 .create-account-form {
     margin: 1rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.create-account-form div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

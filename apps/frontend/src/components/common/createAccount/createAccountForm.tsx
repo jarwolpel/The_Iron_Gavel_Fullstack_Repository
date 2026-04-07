@@ -23,6 +23,9 @@ export function CreateAccountForm() {
     
     return(
         <>
+            <div>
+                <h1>Create a new account</h1>
+            </div>
             <form className="create-account-form" action="">
                 <fieldset>
                     <div>
