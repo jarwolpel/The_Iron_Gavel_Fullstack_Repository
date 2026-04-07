@@ -2,7 +2,7 @@
     align-items: center;
     margin: 0 auto;
     width: 60%;
-    border-radius: 2rem;
+    /* border-radius: 2rem; */
 }
 
 .login-buttons {
@@ -20,5 +20,5 @@
     margin-bottom: 2rem;
 }
 input {
-    margin: 1rem 1rem;
+    /* margin: 1rem 1rem; */
 }

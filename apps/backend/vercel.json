@@ -1,6 +1,17 @@
 {
    "relatedProjects": ["prj_FV1PE6UorqJp9uFoPgXUxnds5JIV"],
 
+   "headers": [
+    {
+        "source": "/(.*)",
+        "headers": [
+            {
+                "key":"Access-Control-Allow-Origin",
+                "value":"the-iron-gavel-fullstack-repository-lliexbdvh.vercel.app"
+            }
+        ]
+    }
+   ],
    "rewrites": [
        {
 
