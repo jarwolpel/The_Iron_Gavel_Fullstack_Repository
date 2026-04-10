@@ -46,22 +46,37 @@ export function Nav() {
                             <NavLink to="/" end>Home</NavLink>
                         </div>
                         <div className="item">
-                                <NavLink to="/test-character-select2">Character Select</NavLink>
+                                <SignedIn>
+                                    <NavLink to="/test-character-select2">Character Select</NavLink>
+                                </SignedIn>
                         </div>
                         <div className="item">
-                            <NavLink to="/battles/battle-screen">Battle Screen</NavLink>
+                            <SignedIn>
+                                <NavLink to="/battles/battle-screen">Battle Screen</NavLink>
+                            </SignedIn>
                         </div>
                         <div className="item">
-                            <NavLink to="/Favorites">Favorite</NavLink>
+                            <SignedIn>
+                                <NavLink to="/Favorites">Favorite</NavLink>
+                            </SignedIn>
                         </div>
                         <div className="item">
-                            <NavLink to="/accounts/login"><button>Login</button></NavLink>
+                            <SignedOut>
+                                <SignInButton />
+                            </SignedOut>
+
+                            <SignedIn>
+                                <NavLink to="/accounts/login"><button>Login</button></NavLink>
+                            </SignedIn>
                         </div>
                         <div className="item profile">
-                            <a href="#">
-                                <img src="./src/assets/account_circle.svg" alt="profile pic"></img>
-                                <p>{getSessionUser()}</p>
-                            </a>
+                            <SignedIn>
+                                <a href="#">
+                                    <UserButton />
+                                    {/* <img src="./src/assets/account_circle.svg" alt="profile pic"></img> */}
+                                    <p>{getSessionUser()}</p>
+                                </a>
+                            </SignedIn>
                         </div>
                     </div>
                 </div>
@@ -111,8 +126,6 @@ export function Nav() {
                                 </a>
                             </SignedIn>
 
-                            <SignedIn>
-                            </SignedIn>
                         </div>
                     </div>
 
