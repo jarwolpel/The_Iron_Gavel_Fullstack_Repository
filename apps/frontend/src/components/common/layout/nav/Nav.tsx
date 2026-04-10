@@ -105,13 +105,13 @@ export function Nav() {
                         <div className="item profile">
                             <SignedIn>
                                 <a href="#">
-                                    <img className="profile-bits" src="./src/assets/account_circle.svg" alt="profile pic"></img>
+                                <UserButton />
+                                    {/* <img className="profile-bits" src="./src/assets/account_circle.svg" alt="profile pic"></img> */}
                                     <p className="profile-bits">{getSessionUser()}</p>
                                 </a>
                             </SignedIn>
 
                             <SignedIn>
-                                <UserButton />
                             </SignedIn>
                         </div>
                     </div>
