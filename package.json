@@ -21,6 +21,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@clerk/react": "^6.2.1",
     "@prisma/client": "^6.5.0",
     "dotenv": "^16.4.7",
     "prisma": "^6.5.0"
