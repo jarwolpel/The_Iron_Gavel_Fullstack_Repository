@@ -13,27 +13,27 @@ import type { BattleDTO } from "../types/battle";
 // let battleStore: Battle[] = [...initialBattles]
 
 export const battleRepository = {
-    async getAll(): Promise <BattleDTO[]> {
-            return fetchBattles();
+    async getAll(sessionToken?: string | null): Promise <BattleDTO[]> {
+            return fetchBattles(sessionToken);
         },
 
-    async findByID(id: string): Promise<BattleDTO | undefined> {
+    async findByID(id: string, sessionToken?: string | null): Promise<BattleDTO | undefined> {
         try {
-            return await getBattleByID(id)
+            return await getBattleByID(id, sessionToken)
         } catch {
             return undefined;
         }
     },
 
-    async save(battle: Omit<BattleDTO, "id">): Promise<BattleDTO> {
-        return createBattleData(battle);
+    async save(battle: Omit<BattleDTO, "id">, sessionToken: string): Promise<BattleDTO> {
+        return createBattleData(battle, sessionToken);
     },
 
-    async update(battle: BattleDTO): Promise<BattleDTO> {
-        return updateBattleData(battle);
+    async update(battle: BattleDTO, sessionToken: string): Promise<BattleDTO> {
+        return updateBattleData(battle, sessionToken);
     },
     
-    async delete(id: string): Promise<void> {
-        return deleteBattle(id);
+    async delete(id: string, sessionToken: string): Promise<void> {
+        return deleteBattle(id, sessionToken);
     },
 };
