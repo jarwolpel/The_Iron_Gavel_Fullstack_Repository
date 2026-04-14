@@ -26,3 +26,13 @@
 .MenuBox div {
   width: 95%;
 }
+
+.signedOut {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signedOut button{
+  height: 30%;
+}
