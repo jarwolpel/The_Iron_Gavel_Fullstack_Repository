@@ -56,3 +56,5 @@ model Credentials {
     password String
     email String
 }
+
+//Below here we likely will have to make join tables for managing many-to-many relationships
