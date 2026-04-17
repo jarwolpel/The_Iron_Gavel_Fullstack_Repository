@@ -6,6 +6,6 @@ export async function fetchCredentials() {
     return credentials;
 }
 
-export async function addUser(user: Credentials) {
-    await credentialAPI.createNewUser(user);
+export async function addUser(user: Credentials, sessionToken: string) {
+    await credentialAPI.createNewUser(user, sessionToken);
 }

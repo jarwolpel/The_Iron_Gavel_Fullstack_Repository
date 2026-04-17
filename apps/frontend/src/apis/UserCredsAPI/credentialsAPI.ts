@@ -31,7 +31,7 @@ export async function getUserByID(credentialID: number): Promise<Credentials> {
     return json.data;
 }
 
-export async function createNewUser(user: Credentials): Promise<Credentials> {
+export async function createNewUser(user: Credentials, sessionToken: string): Promise<Credentials> {
     const credentialResponse: Response = await fetch(
         `${BASE_URL}${CREDENTIAL_ENDPOINT}`,
         {
@@ -39,6 +39,7 @@ export async function createNewUser(user: Credentials): Promise<Credentials> {
             body: JSON.stringify({...user}),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionToken}`
             }
         }
     );
@@ -49,47 +50,3 @@ export async function createNewUser(user: Credentials): Promise<Credentials> {
     const json: CredentialResponseJSON = await credentialResponse.json();
     return json.data;
 }
-
-
-// DEPRICATED CODE
-// import type { Credentials } from "../../types/userCredentials";
-// import { userCredentials } from "./mockUserCredentials";
-
-// export function fetchCredentials(): Credentials[] {
-//     return userCredentials;
-// }
-
-// export function getUserByID(userID: number): Credentials {
-//     const user = userCredentials.find(id => id.id === userID);
-
-//     if(!user) {
-//         throw new Error(`Failed to find user with ID ${userID}`);
-//     }
-
-//     return user;
-// }
-
-// export function createNewUser(user: Credentials) {
-//     userCredentials.push(user);
-// }
-
-// export async function updateUserData(user: Credentials) {
-//     const userIndex = userCredentials.findIndex(index => index.id === user.id);
-
-//     if(userIndex === -1) {
-//         throw new Error(`Failed to update user data with id: ${user.id}`);
-//     }
-
-//     userCredentials[userIndex] = user;
-//     return userCredentials[userIndex];
-// }
-
-// export async function deleteUserCredentials(userID: number) {
-//     const userIndex = userCredentials.findIndex(index => index.id === userID);
-
-//     if(userIndex === -1) {
-//         throw new Error(`Failed to fund user data with id: ${userID}`);
-//     }
-
-//     delete userCredentials[userIndex];
-// }
