@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
 import type { Credentials } from "../types/userCredentials";
 
 import * as credService from "../services/credentialsService";
+import { useAuth } from "@clerk/clerk-react";
 
 export function useUserDatabase( dependencies: unknown[] ){
     const [users, updateUsers] = useState<Credentials[]>([]);
     const [error, setError] = useState<string | null>();
+    const {getToken, isSignedIn} = useAuth();
 
     const getUsers = async() => {
         try {
@@ -23,7 +25,12 @@ export function useUserDatabase( dependencies: unknown[] ){
 
     const createNewUser = async(user: Credentials) => {
         try {
-            await credService.addUser(user);
+            let sessionToken = isSignedIn? await getToken() : null;
+            if(!sessionToken) {
+                throw new Error("Failed to add user, session token cannot be null");
+            } else {
+                await credService.addUser(user, sessionToken);
+            }
 
             await getUsers();
         } catch(errorObject) {

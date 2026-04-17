@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Credentials } from "../../../types/userCredentials";
 import { useLoginAttempt } from "../../../hooks/useLoginAttempt";
 import { useNavigate } from "react-router-dom";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 
 export function LoginForm() {
     const [infoText, setInfoText] = useState<String>("");
@@ -55,12 +56,19 @@ export function LoginForm() {
                 <div>
                     <p>{infoText}</p>
                 </div>
+                <SignedOut>
+                    <div>
+                        <p>You must be signed in to Clerk to create a local account!</p>
+                    </div>
+                </SignedOut>
+                <SignedIn>
                 <button className="create-account-button"
                 onClick={() => {
                     navigator("/accounts/createAccount");
                 }}>
                     Create Account
                 </button>
+                </SignedIn>
             </div>
         </>
     );
