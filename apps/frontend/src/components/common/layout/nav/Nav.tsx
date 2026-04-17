@@ -110,9 +110,7 @@ export function Nav() {
                                 <SignInButton />
                             </SignedOut>
 
-                            <SignedIn>
-                                <NavLink to="/accounts/login"><button>Login</button></NavLink>
-                            </SignedIn>
+                            <NavLink to="/accounts/login"><button>Login</button></NavLink>
         
                         </div>
                         <div className="item profile">

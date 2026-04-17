@@ -57,7 +57,9 @@ export function LoginForm() {
                     <p>{infoText}</p>
                 </div>
                 <SignedOut>
-                    <SignInButton />
+                    <div>
+                        <p>You must be signed in to Clerk to create a local account!</p>
+                    </div>
                 </SignedOut>
                 <SignedIn>
                 <button className="create-account-button"
