@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Credentials } from "../../../types/userCredentials";
 import { useLoginAttempt } from "../../../hooks/useLoginAttempt";
 import { useNavigate } from "react-router-dom";
-import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
 export function LoginForm() {
     const [infoText, setInfoText] = useState<String>("");
