@@ -5,7 +5,10 @@ import {
     searchCharactersSchema,
 } from "../validations/characterValidations";
 
+console.log("CHARACTER ROUTES LOADED");
+
 const router: Router = express.Router();
+console.log("characterRoutes mounted");
 
 // GET search results
 router.get(
@@ -24,6 +27,6 @@ router.get(
 );
 
 // PATCH route to toggle the favorite status of a character
-router.patch("/:id/favorite", characterController.toggleFavorite);
+router.patch("/:id/favourite", characterController.toggleFavorite);
 
 export default router;

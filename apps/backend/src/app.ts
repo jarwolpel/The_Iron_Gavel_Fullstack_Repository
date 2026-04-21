@@ -10,9 +10,16 @@ import setupSwagger from "../config/swagger";
 
 import battleRoutes from "./api/v1/routes/battleRoutes";
 import userBattleRoutes from "./api/v1/routes/userBattleRoutes";
-import credentialRoutes from "./api/v1/routes/credentialRoutes"
-import characterRoutes from "./api/v1/routes/characterRoutes"
 import errorHandler from "./api/v1/middleware/errorHandler";
+// import credentialRoutes from "./api/v1/routes/credentialRoutes"
+// import characterRoutes from "./api/v1/routes/characterRoutes"
+
+import credentialRoutes from "./api/v1/routes/credentialRoutes"
+console.log("BEFORE ROUTES IMPORT");
+import characterRoutes from "./api/v1/routes/characterRoutes"
+console.log("AFTER ROUTES IMPORT");
+console.log("APP.TS EXECUTING");
+// initialize express application
 
 const app: Express = express();
 
