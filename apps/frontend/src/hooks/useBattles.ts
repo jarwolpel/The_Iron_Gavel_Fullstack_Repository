@@ -1,39 +1,31 @@
-//This module controls the state for battles 
 import { useState, useEffect } from "react";
 import { battleRepository } from "../repositories/battleRepository";
-import type { 
-    // Battle, 
-    BattleDTO 
-} from "../types/battle";
+import type { BattleDTO } from "../types/battle";
 import type { Character } from "../types/character";
 import { useAuth } from "@clerk/clerk-react";
 
 export function useBattles(
     dependencies: unknown[] = [],
-    filterFn? : ((battle: BattleDTO) => Boolean)| null,
-
+    filterFn?: ((battle: BattleDTO) => Boolean) | null,
 ) {
-    const {getToken, isSignedIn} = useAuth();
+    const { getToken, isSignedIn, isLoaded } = useAuth();  // add isLoaded
     const [battles, setBattles] = useState<BattleDTO[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    //fetch the battles from the db
     useEffect(() => {
+        if (!isLoaded) return;  // wait for Clerk to finish initializing
+        
         let cancelled = false;
         const load = async () => {
             setLoading(true);
             setError(null);
             try {
-                // get the current user's session token for use in request
-                // inclusion in Authorization header authorizes current user/gets battles
                 const sessionToken = isSignedIn ? await getToken() : null;
                 let data = await battleRepository.getAll(sessionToken);
                 if (!cancelled && filterFn) {
-                  data = data.filter(filterFn);  
+                    data = data.filter(filterFn);
                 }
-                
-                //This spread of the newly created data re-renders a component not passed a filter function?
                 if (!cancelled) setBattles([...data]);
             } catch (err) {
                 if (!cancelled)
@@ -42,20 +34,18 @@ export function useBattles(
                 if (!cancelled) setLoading(false);
             }
         };
-
         load();
-        return () => {cancelled = true; };
-    }, dependencies);
+        return () => { cancelled = true; };
+    }, [isLoaded, isSignedIn, ...dependencies]);  // add isLoaded and isSignedIn
 
-    // POST to the db & sync local state
     const createBattle = async (
-        name: string, 
-        description: string, 
+        name: string,
+        description: string,
         characters: Character[]
     ): Promise<void> => {
         try {
             const sessionToken = isSignedIn ? await getToken() : null;
-            if(!sessionToken) throw new Error("Must be signed in to create a battle");
+            if (!sessionToken) throw new Error("Must be signed in to create a battle");
             const characterIds = characters.map((c) => String(c.id));
             const newBattle = await battleRepository.save({ name, description, characters: characterIds }, sessionToken);
             setBattles((prev) => [...prev, newBattle]);
