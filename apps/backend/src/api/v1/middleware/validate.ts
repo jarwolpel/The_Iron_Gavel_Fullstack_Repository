@@ -23,12 +23,11 @@ export const validateRequest = (schema: ObjectSchema): MiddlewareFunction => {
     return(req: Request, res: Response, next: NextFunction) => {
         try {
             const data: RequestData = {
-                ...req.body,
-                ...req.params,
-                ...req.query
+                body: req.body,
+                params: req.params as Record<string, string>,
+                query: req.query as Record<string, string | string[]>
             };
             validate(schema, data);
-            // invoke next middleware if no error is caught
             next();
         } catch(error) {
             res.status(400).json({error: (error as Error).message});

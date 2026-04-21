@@ -12,7 +12,7 @@ export type RequestBody = Record<string, unknown>;
 //generic type T defaults to RequestBody
 // params and query are key-value pairs with keys of strings, and values of strings (or arrays)
 export type RequestData<T extends RequestBody = RequestBody> = {
-    body: T,
+    body: T;
     params: Record<string, string>;
     query: Record<string, string | string[]>;
 }

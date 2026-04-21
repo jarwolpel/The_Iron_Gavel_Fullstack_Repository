@@ -6,7 +6,7 @@
     "dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "start": "ts-node src/server.ts",
+    "start": "ts-node --project tsconfig.json -r dotenv/config src/server.ts",
     "build": "tsc",
     "vercel-build": "prisma migrate deploy && prisma db seed && npm run build",
     "postinstall": "prisma generate"
