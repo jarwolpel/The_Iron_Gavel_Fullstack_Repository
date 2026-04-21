@@ -6,6 +6,7 @@ export interface BattleDTO {
     name: string;
     description: string;
     characters: string[];   //character IDs only
+    isSaved?: boolean;
 }
  
 //used in the frontend after characters are resolved
@@ -14,4 +15,5 @@ export interface Battle {
     name: string;
     description: string;
     characters: Character[]; //full character objects
+    isSaved?: boolean;
 }

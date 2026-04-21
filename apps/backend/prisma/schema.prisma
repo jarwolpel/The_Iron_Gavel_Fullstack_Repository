@@ -40,13 +40,11 @@ model Characters {
 
 // Create a table called Characters
 model Battles {
-  // id property, as the identifier, with a default value that autoincrements
-    id  Int @id @default(autoincrement())
-
-  // title, definition, and isFavourite properties
-    name String
+    id          Int          @id @default(autoincrement())
+    name        String
     description String
-    characters String[]
+    characters  String[]
+    isSaved     Boolean      @default(false)
     userBattles UserBattle[]
 }
 

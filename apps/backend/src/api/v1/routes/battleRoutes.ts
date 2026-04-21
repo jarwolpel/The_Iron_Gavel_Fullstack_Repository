@@ -32,6 +32,7 @@ router.get(
 router.post(
     "/battles",
     requireAuth(), 
+    findOrCreateUser,
     validateRequest(battleSchema), 
     battleController.createBattle
 );

@@ -17,20 +17,17 @@ export const getAllBattles = async(
     res: Response,
     next: NextFunction
 ): Promise<void> => {
-    try{
+    try {
         const userId = req.userId;
-        
-        const battles = await battleService.fetchAllBattles();
-        
+        // pass userId so service can filter by user
+        const battles = await battleService.fetchAllBattles(userId);
         const frontendBattles: FrontendBattle[] = battles.map(b =>
             toFrontendBattle(b, userId)
         );
-
         res.status(200).json(
-            successResponse(frontendBattles, "Battles retrieved succesfully")
+            successResponse(frontendBattles, "Battles retrieved successfully")
         );
     } catch (error) {
-        // errorHandler middleware will always be the last to catch error throws
         next(error);
     }
 };
@@ -61,11 +58,15 @@ export const createBattle = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const newBattle = await battleService.createBattle(req.body);
+        const userId = req.userId;
+        if (!userId) {
+            res.status(401).json({ message: "Unauthorized" });
+            return;
+        }
+        const newBattle = await battleService.createBattle(req.body, userId);
         const responseBattle = toFrontendBattle(newBattle as BattleWithUsers);
-        res.status(201)
-            .json(successResponse(responseBattle, "Battle created succesfully"));
-    } catch(error) {
+        res.status(201).json(successResponse(responseBattle, "Battle created successfully"));
+    } catch (error) {
         next(error);
     }
 };
