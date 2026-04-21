@@ -2,6 +2,8 @@ import express, {Router} from "express";
 import { validateRequest } from "../middleware/validate";
 import { battleSchema } from "../validations/battleValidation";
 import * as battleController from "../controllers/battleController";
+import { findOrCreateUser } from "../middleware/findOrCreateUser";
+import { requireAuth } from "@clerk/express";
 
 /**
  * Routes determine which endpoints are made available, which controller
@@ -11,37 +13,42 @@ import * as battleController from "../controllers/battleController";
 
 const router: Router = express.Router();
 
+// Loads all Battle History
 router.get(
     "/battles",
-    //requireAuth(), 
+    findOrCreateUser,
     battleController.getAllBattles
 );
 
+// Load a battle from Battle History
 router.get(
     "/battles/:id",
-    //requireAuth(),
-    // validateRequest(battleSchema), 
+    findOrCreateUser,
+    validateRequest(battleSchema), 
     battleController.getBattleById
 );
 
+// Create Battle
 router.post(
     "/battles",
-    //requireAuth(), 
+    requireAuth(), 
     validateRequest(battleSchema), 
     battleController.createBattle
 );
 
-// This won't be used until our Battle state machine is implemented
+// Edit Battle stats, this won't be used until our Battle state machine is implemented
 router.put(
     "/battles/:id",
-    //requireAuth(), 
+    requireAuth(), 
     validateRequest(battleSchema),
     battleController.updateBattle
 );
 
+// Optional if I want to add a delete button
 router.delete(
     "/battles/:id",
-    //requireAuth(), 
+    requireAuth(), 
+    validateRequest(battleSchema),
     battleController.deleteBattle
 );
 

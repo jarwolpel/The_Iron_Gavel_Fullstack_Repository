@@ -1,5 +1,6 @@
 import { Battles } from "@prisma/client";
 import prisma from "../../../../prisma/client";
+import { BattleWithUsers } from "../types/battleWithUsers";
 
 /**
  * Services access data as necessary from the Prisma client. They invoke
@@ -8,15 +9,22 @@ import prisma from "../../../../prisma/client";
  * 
  * More general info on Prisma: https://www.prisma.io/docs/orm/overview/prisma-in-your-stack/rest
  */
-export const fetchAllBattles = async(): Promise<Battles[]> => {
-    return prisma.battles.findMany();
+export const fetchAllBattles = async(): Promise<BattleWithUsers[]> => {
+    return prisma.battles.findMany({
+        include: {
+            userBattles: true
+        }
+    });
 }
 
-export const getBattleById = async(id: number): Promise<Battles | null> => {
+export const getBattleById = async(id: number): Promise<BattleWithUsers | null> => {
     try {
         const battle = await prisma.battles.findUnique({
             where: {
                 id: id
+            },
+            include: {
+                userBattles: true
             }
         });
 
