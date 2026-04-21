@@ -1,7 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { Battles } from "@prisma/client";
 import * as battleService from "../services/battleService";
 import { successResponse } from "../models/responseModel";
+// import { Battles } from "@prisma/client";
+import { toFrontendBattle } from "../types/toFrontendBattle";
+import { BattleWithUsers } from "../types/battleWithUsers";
+import { FrontendBattle } from "@shared/types/frontend-battle"
 
 /**
  * Controller methods define how to handle requests and respond to requests.
@@ -10,17 +13,21 @@ import { successResponse } from "../models/responseModel";
  */
 
 export const getAllBattles = async(
-    _req: Request,
+    req: Request,
     res: Response,
     next: NextFunction
 ): Promise<void> => {
-    try{
-        const battles = await battleService.fetchAllBattles();
+    try {
+        const userId = req.userId;
+        // pass userId so service can filter by user
+        const battles = await battleService.fetchAllBattles(userId);
+        const frontendBattles: FrontendBattle[] = battles.map(b =>
+            toFrontendBattle(b, userId)
+        );
         res.status(200).json(
-            successResponse(battles, "Battles retrieved succesfully")
+            successResponse(frontendBattles, "Battles retrieved successfully")
         );
     } catch (error) {
-        // errorHandler middleware will always be the last to catch error throws
         next(error);
     }
 };
@@ -31,10 +38,12 @@ export const getBattleById = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const battle: Battles | null = 
+        const battle: BattleWithUsers | null = 
             await battleService.getBattleById(Number.parseInt(req.params.id as string));
         if(battle) {
-            res.json(successResponse(battle, "Battle retrieved succesfully"));
+            const userId = req.userId;
+            const responseBattle = toFrontendBattle(battle, userId);
+            res.json(successResponse(responseBattle, "Battle retrieved succesfully"));
         } else{
             throw new Error("Battle not found");
         }
@@ -49,10 +58,15 @@ export const createBattle = async(
     next: NextFunction
 ): Promise<void> => {
     try {
-        const newBattle = await battleService.createBattle(req.body);
-        res.status(201)
-            .json(successResponse(newBattle, "Battle created succesfully"));
-    } catch(error) {
+        const userId = req.userId;
+        if (!userId) {
+            res.status(401).json({ message: "Unauthorized" });
+            return;
+        }
+        const newBattle = await battleService.createBattle(req.body, userId);
+        const responseBattle = toFrontendBattle(newBattle as BattleWithUsers);
+        res.status(201).json(successResponse(responseBattle, "Battle created successfully"));
+    } catch (error) {
         next(error);
     }
 };

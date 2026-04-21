@@ -7,9 +7,15 @@ type BattleResponseJSON = {message: String, data: BattleDTO};
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const BATTLE_ENDPOINT = "/battles";
 
-export async function fetchBattles(): Promise<BattleDTO[]> {
+export async function fetchBattles(sessionToken?: string|null): Promise<BattleDTO[]> {
+    // include bearer authorization if the user is signed in and a token is passed to the function
     const battleResponse: Response = await fetch(
-        `${BASE_URL}${BATTLE_ENDPOINT}`
+        `${BASE_URL}${BATTLE_ENDPOINT}`,
+        sessionToken? {
+            headers: {
+                Authorization: `Bearer ${sessionToken}`,
+            }   
+        } : undefined
     );
     
     if(!battleResponse.ok) {
@@ -20,10 +26,15 @@ export async function fetchBattles(): Promise<BattleDTO[]> {
     return json.data;
 }
 
-export async function getBattleByID(battleID: string): Promise<BattleDTO> {
+export async function getBattleByID(battleID: string, sessionToken?: string|null): Promise<BattleDTO> {
     // const battle = initialBattles.find(id => id.id === battleID);
     const battleResponse: Response = await fetch(
-        `${BASE_URL}${BATTLE_ENDPOINT}/${battleID}`
+        `${BASE_URL}${BATTLE_ENDPOINT}/${battleID}`,
+        sessionToken? {
+            headers: {
+                Authorization: `Bearer ${sessionToken}`
+            }
+        } : undefined
     );
 
     if(!battleResponse.ok) {
@@ -34,7 +45,7 @@ export async function getBattleByID(battleID: string): Promise<BattleDTO> {
     return json.data;
 }
 
-export async function createBattleData(battle: Omit<BattleDTO, "id">): Promise<BattleDTO> {
+export async function createBattleData(battle: Omit<BattleDTO, "id">, sessionToken: string): Promise<BattleDTO> {
     const createResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}`,
         {
@@ -42,6 +53,7 @@ export async function createBattleData(battle: Omit<BattleDTO, "id">): Promise<B
             body: JSON.stringify({...battle}),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionToken}`
             },
         }     
     );
@@ -54,7 +66,7 @@ export async function createBattleData(battle: Omit<BattleDTO, "id">): Promise<B
     return json.data;
 }
 
-export async function updateBattleData(battle: BattleDTO): Promise<BattleDTO> {
+export async function updateBattleData(battle: BattleDTO, sessionToken: string): Promise<BattleDTO> {
     const updateResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}/${battle.id}`,
         {
@@ -62,6 +74,7 @@ export async function updateBattleData(battle: BattleDTO): Promise<BattleDTO> {
             body: JSON.stringify({...battle}),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionToken}`
             },
         }     
     );
@@ -74,10 +87,15 @@ export async function updateBattleData(battle: BattleDTO): Promise<BattleDTO> {
     return json.data;
 }
 
-export async function deleteBattle(battleID: string): Promise<void> {
+export async function deleteBattle(battleID: string, sessionToken: string): Promise<void> {
     const deleteResponse: Response = await fetch(
         `${BASE_URL}${BATTLE_ENDPOINT}/${battleID}`,
-        { method: "DELETE" }
+        { 
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${sessionToken}`
+            } 
+        }
     );
 
     if(!deleteResponse.ok) {

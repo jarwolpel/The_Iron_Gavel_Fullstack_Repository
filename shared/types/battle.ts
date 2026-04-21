@@ -5,4 +5,5 @@ export interface Battle {
     name: string;
     description: string;
     characters: string[];
+    isSaved: boolean;
 }
