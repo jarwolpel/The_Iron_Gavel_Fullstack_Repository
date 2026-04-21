@@ -47,6 +47,7 @@ model Battles {
     name String
     description String
     characters String[]
+    userBattles UserBattle[]
 }
 
 model Credentials {
@@ -58,3 +59,18 @@ model Credentials {
 }
 
 //Below here we likely will have to make join tables for managing many-to-many relationships
+model User {
+  id String @id
+  userBattles UserBattle[]
+  // userCharacters
+  // userCredentials
+}
+
+model UserBattle {
+  user    User @relation(fields:[userId], references: [id], onDelete: Cascade)
+  battles    Battles @relation(fields:[battleId], references: [id], onDelete: Cascade)
+  userId  String
+  battleId  Int
+  // uses composite ID from principle tables
+  @@id([userId, battleId])
+}
