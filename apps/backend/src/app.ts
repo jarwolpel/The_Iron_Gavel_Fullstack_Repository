@@ -10,9 +10,10 @@ import battleRoutes from "./api/v1/routes/battleRoutes";
 import errorHandler from "./api/v1/middleware/errorHandler";
 
 import credentialRoutes from "./api/v1/routes/credentialRoutes"
-
+console.log("BEFORE ROUTES IMPORT");
 import characterRoutes from "./api/v1/routes/characterRoutes"
-
+console.log("AFTER ROUTES IMPORT");
+console.log("APP.TS EXECUTING");
 // initialize express application
 const app: Express = express();
 
@@ -48,7 +49,7 @@ app.use("/api/v1", credentialRoutes);
 // occurs when "next" is invoked
 
 app.use("/api/v1/characters", characterRoutes);
-
+console.log("AFTER ROUTES MOUNT");
 
 
 
