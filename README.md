@@ -18,7 +18,7 @@
 - 1: Clone repo
 - 2: Open project in VSCode, Ctrl+J to open terminal and enter `npm install`
 - 3: Make sure you are in the project root and run `docker compose up -d` to create the SQL container that will hold the database
-- 4: Enter the backend of the project with `cd apps/backend` and enter `npx prisma generate`, and then `npx prisma migrate dev --name fsd-iron-gaval-project`
+- 4: Enter the backend of the project with `cd apps/backend` and enter `npx prisma generate`, and then `npx prisma migrate dev --name fsd-iron-gavel-project`
 - 5: create .env files in the root of the /frontend and /backend directories
 - 5.1 Frontend .env
   VITE_API_BASE_URL=http://localhost:3000
