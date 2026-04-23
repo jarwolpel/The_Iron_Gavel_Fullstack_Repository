@@ -8,5 +8,5 @@ export interface Character{
     healthimg: string;
     shieldimg:string;
     swordimg:string;
-    isFavorite?:boolean;
+    isFavourite?:boolean;
 }

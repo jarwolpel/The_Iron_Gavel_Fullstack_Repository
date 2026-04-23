@@ -77,11 +77,14 @@ export const toggleFavorite = async (
     res: Response,
     next: NextFunction
 ): Promise<void> => {
+
+    console.log("BODY RECEIVED:", req.body);
+
     const { id } = req.params;
-    const { isFavorite } = req.body; // Get the new favorite status from the request body
+    const { isFavourite } = req.body; // Get the new favorite status from the request body
 
     // Validation for isFavorite parameter
-    if (typeof isFavorite !== "boolean") {
+    if (typeof isFavourite !== "boolean") {
         res.status(400).json({ message: "Invalid isFavorite value" });
         return;
     }
@@ -90,7 +93,7 @@ export const toggleFavorite = async (
         // Call the service to update the favorite status
         const updatedCharacter: Characters = await characterService.toggleFavorite(
             Number(id),
-            isFavorite
+            isFavourite
         );
         res.status(200).json(successResponse(updatedCharacter, "Character favorite status updated"));
     } catch (error) {

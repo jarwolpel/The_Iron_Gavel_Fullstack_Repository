@@ -1,17 +1,23 @@
 {
     "extends": "../../tsconfig.base.json",
+    "ts-node": {
+        "files": true
+    },
     "compilerOptions": {
+      "typeRoots": ["./node_modules/@types"],
       "esModuleInterop": true,
       "target": "ES6",
       "module": "commonjs",
+      "rootDir": "../../",
       "outDir": "./dist",
       "baseUrl": "./",
       "sourceMap": true,
       "lib": ["ESNext"],
       "paths": {
-        "*": ["*"]
+        "*": ["*"],
+        "@shared/*": ["../../shared/*"]
       }
     },
-    "include": ["src/**/*", "tests/**/*"],
+    "include": ["src/**/*", "tests/**/*", "../../shared/**/*","types","global.d.ts", "api/index.ts","node_modules"],
     "exclude": ["node_modules", "dist"]
 }

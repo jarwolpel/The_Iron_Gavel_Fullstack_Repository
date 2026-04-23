@@ -7,7 +7,12 @@ import { MenuBox } from "../common/menu-box/menuBox";
 import { useSelectedCharacters } from "../../hooks/useSelectedCharacters";
 
 interface CreateBattleProps {
-  onBattleCreate: (name: string, description: string, characters: Character[]) => Promise<void>;
+    onBattleCreate: (
+        name: string,
+        description: string,
+        characters: Character[],
+        isSaved: boolean
+    ) => Promise<void>;
 }
 
 function CreateBattle({ onBattleCreate }: CreateBattleProps) {
@@ -21,19 +26,20 @@ function CreateBattle({ onBattleCreate }: CreateBattleProps) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !description.trim() || characters.length !== 2) return;
-     
+
     setSubmitting(true);
     setError(null);
-    
+
     try {
-      await onBattleCreate(name, description, characters); 
-      navigate("/battles/battle-screen"); 
+        // isSaved: true tells the backend to create the UserBattle record
+        await onBattleCreate(name, description, characters, true);
+        navigate("/battles/battle-screen");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create battle");
+        setError(err instanceof Error ? err.message : "Failed to create battle");
     } finally {
-      setSubmitting(false)
+        setSubmitting(false);
     }
-  };
+};
 
   return (
     <MenuBox>

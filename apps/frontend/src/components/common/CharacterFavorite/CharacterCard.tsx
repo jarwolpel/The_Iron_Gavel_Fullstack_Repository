@@ -25,7 +25,7 @@ export function CharacterCard({
 
                 {/* Toggle the favorite icon when clicked */}
                 <button onClick={onSaveClick}>
-                    {character.isFavorite ? (
+                    {character.isFavourite ? (
                         <img src={CheckmarkIcon} width={20} height={20} alt="Checkmark Icon" />
                     ) : (
                         <img src={BoxIcon} width={20} height={20} alt="Box Icon" />

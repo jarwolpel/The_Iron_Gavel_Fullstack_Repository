@@ -1,5 +1,6 @@
 import { Battles } from "@prisma/client";
 import prisma from "../../../../prisma/client";
+import { BattleWithUsers } from "../types/battleWithUsers";
 
 /**
  * Services access data as necessary from the Prisma client. They invoke
@@ -8,15 +9,29 @@ import prisma from "../../../../prisma/client";
  * 
  * More general info on Prisma: https://www.prisma.io/docs/orm/overview/prisma-in-your-stack/rest
  */
-export const fetchAllBattles = async(): Promise<Battles[]> => {
-    return prisma.battles.findMany();
+export const fetchAllBattles = async(userId?: string | null): Promise<BattleWithUsers[]> => {
+    if (userId) {
+        return prisma.battles.findMany({
+            where: {
+                userBattles: {
+                    some: { userId: userId }
+                }
+            },
+            include: { userBattles: true }
+        });
+    }
+    // unauthenticated users get no battles
+    return [];
 }
 
-export const getBattleById = async(id: number): Promise<Battles | null> => {
+export const getBattleById = async(id: number): Promise<BattleWithUsers | null> => {
     try {
         const battle = await prisma.battles.findUnique({
             where: {
                 id: id
+            },
+            include: {
+                userBattles: true
             }
         });
 
@@ -33,16 +48,22 @@ export const getBattleById = async(id: number): Promise<Battles | null> => {
 export const createBattle = async(battleData: {
     name: string,
     description: string,
-    characters?: string[]
-}): Promise<Battles> => {
-    // create a new battle with battleData as its column values, except for isFavourite as false
-    const newBattle: Battles = await prisma.battles.create({
+    characters?: string[],
+    isSaved?: boolean
+}, userId: string): Promise<BattleWithUsers> => {
+    const newBattle = await prisma.battles.create({
         data: {
             characters: [],
-            ...battleData
-        }
+            ...battleData,
+            // If isSaved, simultaneously create the UserBattle join record
+            ...(battleData.isSaved && {
+                userBattles: {
+                    create: { userId }
+                }
+            })
+        },
+        include: { userBattles: true }
     });
-
     return newBattle;
 }
 
