@@ -68,4 +68,12 @@ app.use("/api/v1/characters", characterRoutes);
 app.use(errorHandler); //errorhandler catches errors as last element in middleware chain
 // occurs when "next" is invoked
 
+process.on("uncaughtException", (err) => {
+    console.error("Uncaught exception during startup:", err);
+});
+
+process.on("unhandledRejection", (reason) => {
+    console.error("Unhandled rejection during startup:", reason);
+});
+
 export default app;
