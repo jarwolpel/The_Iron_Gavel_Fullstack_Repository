@@ -16,7 +16,7 @@
        {
 
            "source": "/api/(.*)",
-           "destination": "/api" 
+           "destination": "/api/index.ts" 
        }
    ],
    "git": {
